@@ -11,6 +11,11 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { GeolocationComponent } from './pages/geolocation/geolocation.component';
+import { ConstellationComponent } from './pages/constellation/constellation.component';
+import { SkyConditionComponent } from './pages/sky-condition/sky-condition.component';
+import { ViewSavedDateComponent } from './pages/view-saved-date/view-saved-date.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,12 @@ import { HttpClientModule } from '@angular/common/http';
     NotFoundComponent,
     AboutComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    SidebarComponent,
+    ConstellationComponent,
+    GeolocationComponent,
+    SkyConditionComponent,
+    ViewSavedDateComponent
   ],
   imports: [
     BrowserModule,

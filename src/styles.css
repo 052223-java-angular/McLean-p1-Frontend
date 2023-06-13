@@ -4,6 +4,6 @@
 @tailwind utilities;
 
 body {
-  @apply font-mono;
-  @apply bg-slate-600
+  background: url(assets/images/Luxor.jpg);
+  background-size: cover;
 }

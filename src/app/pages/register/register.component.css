@@ -1,0 +1,14 @@
+.homeForm {
+  @apply flex;
+  @apply flex-col;
+  @apply items-center;
+  @apply gap-8;
+  @apply shadow-xl;
+  @apply p-20;
+  @apply rounded-md;
+}
+
+.homeForm {
+  background-color: rgba(50, 50, 50, .45);
+  background-filter: blur(10px);
+}

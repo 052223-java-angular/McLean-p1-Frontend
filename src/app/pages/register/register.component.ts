@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterPayload } from 'src/app/dtmodels/register-payload';
-import { AuthService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +11,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -35,13 +34,6 @@ export class RegisterComponent implements OnInit {
     }
     //call a service to send the payload to the backend api
     //do this using ng g service
-    this.authService.register(payload).subscribe({
-      next: value => {
-      //handle the success response here
-      },
-      error: error => {
-      //handle the error response here
-      });
-  }
+    }
 
 }

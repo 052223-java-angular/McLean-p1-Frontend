@@ -16,6 +16,7 @@ import { GeolocationComponent } from './pages/geolocation/geolocation.component'
 import { ConstellationComponent } from './pages/constellation/constellation.component';
 import { SkyConditionComponent } from './pages/sky-condition/sky-condition.component';
 import { ViewSavedDateComponent } from './pages/view-saved-date/view-saved-date.component';
+import { HarmonicMappingComponent } from './pages/harmonic-mapping/harmonic-mapping.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ViewSavedDateComponent } from './pages/view-saved-date/view-saved-date.
     ConstellationComponent,
     GeolocationComponent,
     SkyConditionComponent,
-    ViewSavedDateComponent
+    ViewSavedDateComponent,
+    HarmonicMappingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,19 @@
-Short Description of purpose - output is based on current position on Earth.
+Short Description of purpose for user- output is based on current position on Earth.
 
 drop-down? menu with list of locations saved for the user
 
 option to add hotspot or custom location based on long/lat
 
 A submit button to save/update/delete the choice
+
+List for saved locations
+<br>
+
+<form [formGroup]="geolocationForm" (ngSubmit)="submit()">
+  <select formName="geolocationPicker">
+    <option [ngValue]="null" disabled>Select Country</option>
+    <option *ngFor="let geolocation of geolocations" [ngValue]="geolocation.id">{{geolocation.name}}</option>
+  </select>
+  <br>
+  <button type="submit">Submit</button>
+</form>

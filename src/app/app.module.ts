@@ -18,7 +18,9 @@ import { SkyConditionComponent } from './pages/sky-condition/sky-condition.compo
 import { ViewSavedDateComponent } from './pages/view-saved-date/view-saved-date.component';
 import { HarmonicMappingComponent } from './pages/harmonic-mapping/harmonic-mapping.component';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from 'src/app/services/auth-interceptor-service.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
       preventDuplicates: true
     }),
   ],
-  providers: [HttpClient],
+  providers: [HttpClient,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

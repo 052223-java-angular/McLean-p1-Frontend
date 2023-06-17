@@ -2,6 +2,5 @@ div {
   background-color: rgba(50, 50, 50, .85);
   background-filter: blur(10px);
   color: white;
-  border-radius: 1%;
   padding: 20px;
 }

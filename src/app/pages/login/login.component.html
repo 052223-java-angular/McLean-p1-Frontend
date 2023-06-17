@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center">
-  <form class="homeForm">
+  <form [formGroup]="loginForm" (ngSubmit)=submitForm() class="loginForm">
     <h1 class="class-bold text-2xl text-white">Login</h1>
 
     <label class="flex flex-col">

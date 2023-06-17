@@ -6,6 +6,9 @@
     Username
     <input class="bg-white px-5 py-2 rounded-md shadow-xl transition focus:ease-out focus:scale-110 duration-300" type="text" placeholder="username" formControlName="username" />
   </label>
+  <ng-container *ngIf="registerForm.controls['username']?.errors">
+    <small class="text-red-600" *ngIf="registerForm.controls['username']?.touched">Username needs to be x characters.</small>
+  </ng-container>
 
   <label class="flex flex-col">
     Password

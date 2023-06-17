@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ConstellationService } from 'src/app/services/constellation-service.service';
+import { ConstellationPayload } from 'src/app/dtmodels/constellation-payload';
+import { AuthService } from 'src/app/services/auth-service.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-constellation',
@@ -25,7 +30,7 @@ export class ConstellationComponent implements OnInit {
     { id: 12, name: "Pisces" }
   ];
 
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder, private constellationService: ConstellationService, private authService: AuthService, private router: Router, private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -34,8 +39,21 @@ export class ConstellationComponent implements OnInit {
     });
   }
 
-  submit() {
-    console.log("Form submitted")
+  submit(): void {
     console.log(this.constellationForm.value);
+
+    const payload: ConstellationPayload = {
+      constellation: this.constellationForm.value
+    }
+
+    this.constellationService.setConstellation(payload).subscribe({
+      next: value => {
+        this.toastr.success('Constellation set');
+        this.router.navigate(['/about']);
+      },
+      error: error => {
+        this.toastr.error(error.error.message);
+      }
+    });
   }
 }

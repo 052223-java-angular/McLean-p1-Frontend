@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterPayload } from 'src/app/dtmodels/register-payload';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -25,7 +26,9 @@ export class RegisterComponent implements OnInit {
 
   submitForm(): void {
     if(this.registerForm.invalid) {
-      console.log('This form is invalid');
+      this.registerForm.controls['username'].markAsTouched();
+      this.registerForm.controls['password'].markAsTouched();
+      this.registerForm.controls['confirmPassword'].markAsTouched();
       this.registerForm.reset();
       return;
     }
@@ -41,10 +44,11 @@ export class RegisterComponent implements OnInit {
     this.authService.register(payload).subscribe({
       //successful registration callback
       next: value => {
+        this.toastr.success('Registration successful');
         this.router.navigate(['/login']);
       },
       error: error => {
-
+        this.toastr.error(error.error.message);
       }
     });
   }

@@ -17,6 +17,8 @@ import { ConstellationComponent } from './pages/constellation/constellation.comp
 import { SkyConditionComponent } from './pages/sky-condition/sky-condition.component';
 import { ViewSavedDateComponent } from './pages/view-saved-date/view-saved-date.component';
 import { HarmonicMappingComponent } from './pages/harmonic-mapping/harmonic-mapping.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -38,7 +40,13 @@ import { HarmonicMappingComponent } from './pages/harmonic-mapping/harmonic-mapp
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    }),
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]

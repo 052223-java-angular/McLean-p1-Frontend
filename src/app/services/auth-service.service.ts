@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { RegisterPayload } from '../dtmodels/register-payload';
 import { Observable } from 'rxjs';
 import { Auth } from '../dtmodels/auth';
+import { LoginPayload } from '../dtmodels/login-payload';
 
 @Injectable({
   providedIn: 'root'
@@ -16,4 +17,9 @@ export class AuthService {
   register(payload: RegisterPayload): Observable<Auth> {
     return this.http.post<Auth>(`${this.baseUrl}/auth/register`, payload);
   }
+
+  login(payload: LoginPayload): Observable<Auth> {
+    return this.http.post<Auth>(`${this.baseUrl}/auth/login`, payload);
+  }
+
 }

@@ -22,23 +22,6 @@ export class AuthService {
     return this.http.post<Auth>(`${this.baseUrl}/auth/login`, payload);
   }
 
-  //this token thing screwed me i think
-
-//   //set token into localstorage from header
-//   setAuthToken(): void {
-//     localStorage.setItem('token');
-//   }
-//
-//   //get auth-token from localstorage
-//   getAuthToken(): string {
-//     return localStorage.getItem('token');
-//   }
-//
-//   isAuthenticated(): boolean {
-//     //get the token
-//     const token = this.getToken();
-//     //return a boolean reflecting whether or not the token is expired
-//     return tokenNotExpired(null, token);
-//   }
+  //https://vegibit.com/how-to-make-http-requests-in-angular-using-observables/
 
 }

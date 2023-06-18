@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-//actual nightmare:
+//didnt realize how difficult putting the token in the header at the backend would make my frontend:
 export class AuthInterceptorService implements HttpInterceptor {
 
   //calling next.handle means that we are passing control to the next interceptor in the chain, if there is one
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.token;
+    const token = "sldkf"; //localStorage.token;
 
     if(!token) {
       return next.handle(request);

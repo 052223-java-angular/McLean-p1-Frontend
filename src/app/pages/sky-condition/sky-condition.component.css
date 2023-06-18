@@ -1,14 +1,18 @@
+p {
+  color: white;
+  justify-content: center;
+}
+
 .container {
   display: flex;
   height: 700px;
   width: 700px;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
 .sun {
-  position: absolute;
+  position: relative;
   width: 8em;
   height: 8em;
   background-color: yellow;
@@ -17,33 +21,12 @@
 }
 
 .mercury {
+  top: 10px;
   position: absolute;
-  top: 15em;
-  left: 15em;
-  width: 10em;
-  height: 10em;
-  border-style: solid;
-  border-color: black;
-  border-width: 0.1em 0.1em 0 0;
+  height: 1em;
+  width: 1em;
   border-radius: 50%;
+  border: 2px solid black;
 }
 
-.venus {
-  position:absolute;
-  top: 10em;
-  left: 10em;
-  width: 15em;
-  height: 20em;
-  border-style: solid;
-  border-color: black;
-  border-width: 0.1em;
-  border-radius: 50%;
-}
 
-.mercury::before {
-  top: 2.8em;
-  right: 2.8em;
-  width: 1.2em;
-  height: 1.2em;
-  background-color: aqua;
-}

@@ -41,6 +41,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(payload).subscribe({
       next: value => {
         console.log(value.headers.get('auth-token'));
+        let jwt = value.headers.get('auth-token');
+        if(jwt != null) {
+          localStorage.setItem('auth-token', jwt);
+          let GETjwt = localStorage.getItem('auth-token');
+          console.log(GETjwt);
+        }
 
 //         console.log(value);
 //         let userdata = {

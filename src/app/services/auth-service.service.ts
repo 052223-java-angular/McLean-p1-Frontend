@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { RegisterPayload } from '../dtmodels/register-payload';
 import { Observable } from 'rxjs';
 import { Auth } from '../dtmodels/auth';
@@ -18,10 +18,16 @@ export class AuthService {
     return this.http.post<Auth>(`${this.baseUrl}/auth/register`, payload);
   }
 
-  login(payload: LoginPayload): Observable<Auth> {
-    return this.http.post<Auth>(`${this.baseUrl}/auth/login`, payload);
+  //HttpClient.get() does not specify any options.  By default, ite returns the JSON data contained in the response body
+  //In order to get header information, we must specify it to HttpClient
+
+  //observe type tells us what we are interested in observing, must add httpresponse<t>
+  login(payload: LoginPayload): Observable<HttpResponse<Auth>> {
+    return this.http.post<Auth>(`${this.baseUrl}/auth/login`, payload, { observe : 'response'});
   }
 
   //https://vegibit.com/how-to-make-http-requests-in-angular-using-observables/
+
+  //at some point have to check if token already exists in localStorage and clear() it then set new token
 
 }

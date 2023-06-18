@@ -4,6 +4,7 @@ import { LoginPayload } from 'src/app/dtmodels/login-payload';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -39,31 +40,34 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(payload).subscribe({
       next: value => {
-        console.log(value);
-        let userdata = {
-          'id': value.id,
-          'username': value.username,
-          'role': value.role
-        }
-        //correctly printing id
-        console.log(userdata.id);
-        //local storage is limited to handle only string key/value pairs.
-        //requires using JSON.stringify (to set object in localStorage) and JSON.parse  (to get object from localStorage)
-        //localStorage provides four methods to interact with stored data
-        //setItem, getItem, removeItem and clear.. localStorage.clear() removes all keys
-        localStorage.setItem('storedUsername', userdata.username);
-        localStorage.setItem('storedRole', userdata.role);
-        let username = localStorage.getItem('storedUsername');
-        let role = localStorage.getItem('storedRole');
-        //correctly prints username
-        console.log(username);
-        console.log(role);
+        console.log(value.headers.get('auth-token'));
+
+//         console.log(value);
+//         let userdata = {
+//           'id': value.id,
+//           'username': value.username,
+//           'role': value.role
+//         }
+//         //correctly printing id
+//         console.log(userdata.id);
+//         //local storage is limited to handle only string key/value pairs.
+//         //requires using JSON.stringify (to set object in localStorage) and JSON.parse  (to get object from localStorage)
+//         //localStorage provides four methods to interact with stored data
+//         //setItem, getItem, removeItem and clear.. localStorage.clear() removes all keys
+//         localStorage.setItem('storedUsername', userdata.username);
+//         localStorage.setItem('storedRole', userdata.role);
+//         let username = localStorage.getItem('storedUsername');
+//         let role = localStorage.getItem('storedRole');
+//         //correctly prints username
+//         console.log(username);
+//         console.log(role);
         this.router.navigate(['/about']);
       },
       error: error => {
         this.toastr.error(error.error.message);
       }
     });
+
   }
 
 }

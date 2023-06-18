@@ -13,6 +13,8 @@ export class ApiService {
     this.httpClient = new HttpClient(httpBackend);
   }
 
+  //make parallel API calls in Angular using Fetch and Axios
+  //rxjs Forkjoin or CombineLatest
   getData() {
     return this.httpClient.get('https://www.astropical.space/api-ephem.php?lat=36.1&lon=-80.7');
   }

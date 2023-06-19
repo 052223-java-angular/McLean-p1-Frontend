@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { ApiService } from 'src/app/services/api-service.service';
+import { GeolocationPayload } from 'src/app/dtmodels/geolocation-payload';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +15,20 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
+  location: any;
+
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastr: ToastrService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastr: ToastrService, private apiService: ApiService) {}
 
   ngOnInit(): void {
+    this.apiService.getLocation().subscribe((response) => {
+      console.log(response);
+      this.location = response;
+      console.log(typeof(this.location));
+      console.log(this.location.latitude);
+      console.log(this.location.longitude);
+    })
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -49,7 +60,7 @@ export class LoginComponent implements OnInit {
 
           //set user home location - not exists, possibly do at registration and check if same at login
 
-          this.router.navigate(['/about']);
+          //this.router.navigate(['/about']);
         }
 
 //         console.log(value);
@@ -71,6 +82,21 @@ export class LoginComponent implements OnInit {
 //         //correctly prints username
 //         console.log(username);
 //         console.log(role);
+      },
+      error: error => {
+        this.toastr.error(error.error.message);
+      }
+    });
+
+    const locPayload: GeolocationPayload = {
+        name: "home",
+        longitude: this.location.longitude,
+        latitude: this.location.latitude,
+    };
+
+    this.authService.setHome(locPayload).subscribe({
+      next: value => {
+        this.router.navigate(['/about']);
       },
       error: error => {
         this.toastr.error(error.error.message);

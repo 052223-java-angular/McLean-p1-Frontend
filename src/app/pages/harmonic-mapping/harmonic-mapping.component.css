@@ -1,0 +1,39 @@
+.center {
+  display: flex;
+  height: 600px;
+  align-items: center;
+  justify-content: center;
+}
+
+#circle {
+  position: relative;
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+/*create compass*/
+
+#planet1 {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  top: -45px;
+  left: 155px;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+/*  use ::before, ::after for inserting images, specifically ::after content*/
+
+#planet2 {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  top: 355px;
+  left: 155px;
+  border-radius: 50%;
+  border: 2px solid red;
+}
+

@@ -10,13 +10,17 @@ import { AboutComponent } from './pages/about/about.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { GeolocationComponent } from './pages/geolocation/geolocation.component';
 import { ConstellationComponent } from './pages/constellation/constellation.component';
 import { SkyConditionComponent } from './pages/sky-condition/sky-condition.component';
 import { ViewSavedDateComponent } from './pages/view-saved-date/view-saved-date.component';
 import { HarmonicMappingComponent } from './pages/harmonic-mapping/harmonic-mapping.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from 'src/app/services/auth-interceptor-service.service';
 
 @NgModule({
   declarations: [
@@ -38,9 +42,20 @@ import { HarmonicMappingComponent } from './pages/harmonic-mapping/harmonic-mapp
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    }),
   ],
-  providers: [],
+  providers: [HttpClient,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

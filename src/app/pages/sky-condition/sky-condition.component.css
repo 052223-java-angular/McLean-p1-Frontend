@@ -1,0 +1,32 @@
+p {
+  color: white;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  height: 700px;
+  width: 700px;
+  align-items: center;
+  justify-content: center;
+}
+
+.sun {
+  position: relative;
+  width: 8em;
+  height: 8em;
+  background-color: yellow;
+  border-radius: 50%;
+  box-shadow: 0 0 3em white;
+}
+
+.mercury {
+  top: 10px;
+  position: absolute;
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+

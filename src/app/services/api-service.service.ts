@@ -23,4 +23,8 @@ export class ApiService {
     return this.httpClient.get('https://api.visibleplanets.dev/v3?latitude=36.1&longitude=-80.7')
   }
 
+  getLocation() {
+     return this.httpClient.get('https://ipapi.co/json/');
+  }
+
 }

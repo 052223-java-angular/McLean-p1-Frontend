@@ -46,6 +46,10 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('auth-token', jwt);
           let GETjwt = localStorage.getItem('auth-token');
           console.log(GETjwt);
+
+          //set user home location - not exists, possibly do at registration and check if same at login
+
+          this.router.navigate(['/about']);
         }
 
 //         console.log(value);
@@ -67,7 +71,6 @@ export class LoginComponent implements OnInit {
 //         //correctly prints username
 //         console.log(username);
 //         console.log(role);
-        this.router.navigate(['/about']);
       },
       error: error => {
         this.toastr.error(error.error.message);

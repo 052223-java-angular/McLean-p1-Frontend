@@ -10,7 +10,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   //calling next.handle means that we are passing control to the next interceptor in the chain, if there is one
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = "sldkf"; //localStorage.token;
+    const token = localStorage.getItem('auth-token');
 
     if(!token) {
       return next.handle(request);

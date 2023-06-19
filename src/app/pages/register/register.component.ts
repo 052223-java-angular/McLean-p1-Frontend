@@ -4,6 +4,7 @@ import { RegisterPayload } from 'src/app/dtmodels/register-payload';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api-service.service';
 
 @Component({
   selector: 'app-register',
@@ -12,11 +13,20 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent implements OnInit {
 
+  location: any;
+
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastr: ToastrService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastr: ToastrService, private apiService: ApiService) {}
 
   ngOnInit(): void {
+    this.apiService.getLocation().subscribe((response) => {
+      console.log(response);
+      this.location = response;
+      console.log(typeof(this.location));
+      console.log(this.location.latitude);
+      console.log(this.location.longitude);
+    })
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -45,6 +55,9 @@ export class RegisterComponent implements OnInit {
       //successful registration callback
       next: value => {
         this.toastr.success('Registration successful');
+
+        //send this.location.latitude/longitude to DB + home address
+
         this.router.navigate(['/login']);
       },
       error: error => {

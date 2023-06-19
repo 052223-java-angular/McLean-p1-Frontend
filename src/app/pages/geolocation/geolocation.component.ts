@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/services/api-service.service';
 
 @Component({
   selector: 'app-geolocation',
   templateUrl: './geolocation.component.html',
   styleUrls: ['./geolocation.component.css']
 })
-export class GeolocationComponent  implements OnInit {
+export class GeolocationComponent implements OnInit {
+
+    location: any;
 
     geolocationForm!: FormGroup;
 
@@ -25,10 +28,18 @@ export class GeolocationComponent  implements OnInit {
       { id: 12, name: "Pisces" }
     ];
 
-    constructor(private fb:FormBuilder) {
+    constructor(private fb:FormBuilder, private apiService: ApiService) {
     }
 
     ngOnInit() {
+      this.apiService.getLocation().subscribe((response) => {
+        console.log(response);
+        this.location = response;
+        console.log(typeof(this.location));
+        //use this.location data to allow updating the settings
+        console.log(this.location.latitude);
+        console.log(this.location.longitude);
+      })
       this.geolocationForm = this.fb.group({
       geolocation: [null]
       });

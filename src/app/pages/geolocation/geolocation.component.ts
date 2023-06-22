@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ApiService } from 'src/app/services/api-service.service';
+import { GeolocationPayload } from 'src/app/dtmodels/geolocation-payload';
+import { GeolocationService } from 'src/app/services/geolocation-service.service';
+import { AuthService } from 'src/app/services/auth-service.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-geolocation',
@@ -11,6 +16,10 @@ export class GeolocationComponent implements OnInit {
 
     location: any;
 
+    token: any;
+
+    geolocation!: FormControl;
+
     geolocationForm!: FormGroup;
 
     geolocations = [
@@ -20,7 +29,7 @@ export class GeolocationComponent implements OnInit {
       { id: 4, name: "Vienna, Austria" },
     ];
 
-    constructor(private fb:FormBuilder, private apiService: ApiService) {
+    constructor(private fb:FormBuilder, private apiService: ApiService, private geolocationService: GeolocationService, private authService: AuthService, private router: Router, private toastr: ToastrService) {
       this.location = [];
     }
 
@@ -32,9 +41,11 @@ export class GeolocationComponent implements OnInit {
         //use this.location data to allow updating the settings
         console.log(this.location.latitude);
         console.log(this.location.longitude);
+        this.token = sessionStorage.getItem('token');
+        this.geolocation = new FormControl(" ");
       })
       this.geolocationForm = this.fb.group({
-      geolocation: [null]
+        geolocation: this.geolocation,
       });
     }
 
@@ -42,9 +53,25 @@ export class GeolocationComponent implements OnInit {
       console.log("Form submitted")
       console.log(this.geolocationForm.value);
 
-      //save location data to database based on user selection
-      //probably easiest to hard code lon/lat data
+      const payload: GeolocationPayload = {
+        name: this.geolocationForm.controls['geolocation'].value,
+        //add lon/lat to array of preselected locations instead of here
+        longitude: 48.2,
+        latitude: 16.3,
+        token: this.token
+      }
 
+      this.geolocationService.setGeolocation(payload).subscribe({
+        next: value => {
+          this.toastr.success('Geolocation set');
+          this.router.navigate(['/about']);
+        },
+        error: error => {
+          this.toastr.error(error.error.message);
+        }
+      });
+
+      //give user option to select from possible choices of saved locations
       //then set this user lon/lat in session
     }
 

@@ -10,10 +10,10 @@ List for saved locations
 <br>
 
 <form [formGroup]="geolocationForm" (ngSubmit)="submit()">
-  <select formName="geolocationPicker">
+  <select formName="geolocationPicker" formControlName="geolocation">
     <option [ngValue]="null" disabled>Select Country</option>
-    <option *ngFor="let geolocation of geolocations" [ngValue]="geolocation.id">{{geolocation.name}}</option>
+    <option *ngFor="let geolocation of geolocations" [ngValue]="geolocation.name">{{geolocation.name}}</option>
   </select>
   <br>
-  <button type="submit">Submit</button>
+  <button type="submit" class="bg-white px-5 py-2 rounded-md shadow-xl">Submit</button>
 </form>

@@ -44,6 +44,12 @@ export class SkyConditionComponent implements OnInit {
     });
   }
 
+  //need a button to save date
+  submit(): void {
+    //create save-data-payload from data called from api
+
+  }
+
   //need a save button on this page
 
 }

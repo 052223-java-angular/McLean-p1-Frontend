@@ -12,8 +12,8 @@ export class ConstellationService {
 
   constructor(private http: HttpClient) { }
 
-  setConstellation(payload: ConstellationPayload): Observable<Auth> {
-    return this.http.post<Auth>(`${this.baseUrl}/locations/create`, payload);
+  setConstellation(payload: ConstellationPayload): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/favorites/create`, payload);
   }
 
 }

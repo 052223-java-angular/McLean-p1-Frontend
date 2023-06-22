@@ -21,6 +21,7 @@ export class GeolocationComponent implements OnInit {
     ];
 
     constructor(private fb:FormBuilder, private apiService: ApiService) {
+      this.location = [];
     }
 
     ngOnInit() {

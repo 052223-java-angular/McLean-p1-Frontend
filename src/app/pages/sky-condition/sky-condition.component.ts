@@ -23,7 +23,10 @@ export class SkyConditionComponent implements OnInit {
   apiList: any;
   apiList2: any;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {
+    this.apiList = [];
+    this.apiList2 = [];
+  }
 
 //   ----not my code, for testing purposes
 //   get time$() {
@@ -40,5 +43,7 @@ export class SkyConditionComponent implements OnInit {
       this.apiList2 = moreData;
     });
   }
+
+  //need a save button on this page
 
 }

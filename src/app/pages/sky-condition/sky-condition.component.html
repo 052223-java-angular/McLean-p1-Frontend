@@ -10,7 +10,8 @@ orbital map + time above horizon
 
 <!--.data is component of api's response-->
 <div *ngFor="let item of apiList2.data">
-  <h3>planet</h3><span class="text-white">{{item.name}} @ {{item.constellation}}, time {{item.rightAscension.hours}}</span>
+  <!--use raw instead of hours/minutes, truncate to 2 decimal points-->
+  <h3>planet</h3><span class="text-white">{{item.name}} @ {{item.constellation}}, time {{item.rightAscension.hours}}: {{item.rightAscension.minutes}}</span>
 </div>
 
 <div class="container">

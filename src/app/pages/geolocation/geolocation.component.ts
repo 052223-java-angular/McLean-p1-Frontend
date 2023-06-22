@@ -13,9 +13,11 @@ export class GeolocationComponent implements OnInit {
 
     geolocationForm!: FormGroup;
 
-    //need to read all location based on localstorage token
     geolocations = [
-      { id: 1, name: "Ares" },
+      { id: 1, name: "New York, NY" },
+      { id: 2, name: "Wuhan, China" },
+      { id: 3, name: "London, England" },
+      { id: 4, name: "Vienna, Austria" },
     ];
 
     constructor(private fb:FormBuilder, private apiService: ApiService) {
@@ -38,6 +40,11 @@ export class GeolocationComponent implements OnInit {
     submit() {
       console.log("Form submitted")
       console.log(this.geolocationForm.value);
+
+      //save location data to database based on user selection
+      //probably easiest to hard code lon/lat data
+
+      //then set this user lon/lat in session
     }
 
 }

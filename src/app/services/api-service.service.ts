@@ -15,7 +15,7 @@ export class ApiService {
   }
 
   getHorizonData() {
-    return this.httpClient.get('https://api.visibleplanets.dev/v3?latitude=36.1&longitude=-80.7')
+    return this.httpClient.get('https://api.visibleplanets.dev/v3?latitude=36.1&longitude=-80.7');
   }
 
   getLocation() {

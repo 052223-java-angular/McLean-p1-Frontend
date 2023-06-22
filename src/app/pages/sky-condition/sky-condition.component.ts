@@ -21,6 +21,7 @@ export class SkyConditionComponent implements OnInit {
 //   private seconds$: Observable<number> = this.time$.pipe(map((now: Date) => now.getSeconds()));
 
   apiList: any;
+  apiList2: any;
 
   constructor(private apiService: ApiService) { }
 
@@ -33,6 +34,10 @@ export class SkyConditionComponent implements OnInit {
     this.apiService.getData().subscribe((data) => {
       console.log(data);
       this.apiList = data;
+    });
+    this.apiService.getHorizonData().subscribe((moreData) => {
+      console.log(moreData);
+      this.apiList2 = moreData;
     });
   }
 

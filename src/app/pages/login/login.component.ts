@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
                   username : value.body!.username,
                   role : value.body!.role,
                   token: value.body!.token,
+                  //retrieve locations and set home on login
             }
         }
         sessionStorage.setItem('token', value.body!.token);

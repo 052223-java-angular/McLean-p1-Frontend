@@ -3,8 +3,14 @@ orbital map + time above horizon
 <!--not my code, just testing-->
 <!--<p>{{ time$ | async | date: 'hh:mm:ss' }}</p>-->
 
+<!--.response is component of api's response-->
 <div *ngFor="let item of apiList.response">
   <h3>planetName</h3><span class="text-white">{{item.name}} @ {{item.const}}</span>
+</div>
+
+<!--.data is component of api's response-->
+<div *ngFor="let item of apiList2.data">
+  <h3>planet</h3><span class="text-white">{{item.name}} @ {{item.constellation}}, time {{item.rightAscension.hours}}</span>
 </div>
 
 <div class="container">

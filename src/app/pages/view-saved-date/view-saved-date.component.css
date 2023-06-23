@@ -1,9 +1,29 @@
+.selection { grid-area: top; }
+.solar-system { grid-area: left; }
+.test { grid-area: right; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'top top'
+    'right left';
+  gap: 10px;
+  background-color: rgba(50, 50, 50, .85);
+  background-filter: blur(10px);
+  padding: 10px;
+  place-items: center;
+}
+
+.selection {
+  background-color: red;
+}
+
 .solar-system {
-  --size: 450px;
+  --size: 380px;
   position: relative;
   width: var(--size);
   height: var(--size);
-  border: 8px solid black;
+  border: 2px solid black;
   border-radius: 50%;
 }
 
@@ -13,7 +33,7 @@
   width: 2px;
   top: 10%;
   left: 50%;
-  background-color: red;
+  /*background-color: red;*/
   transform-origin: 50% 100%;
   transform: rotate(var(--rotate));
 }
@@ -40,12 +60,22 @@
   border-radius: 50%;
   background-color: yellow;
   width: 3em;
-  height:3em;
+  height: 3em;
 }
 
 .mars {
   height: 55%;
   top: -5%;
+}
+
+.mars::before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background-color: red;
+  width: 4em;
+  height: 4em;
+  box-shadow: 0 0 3em white;
 }
 
 .venus::after {
@@ -58,3 +88,5 @@
   color: green;
 }
 
+.test {
+}

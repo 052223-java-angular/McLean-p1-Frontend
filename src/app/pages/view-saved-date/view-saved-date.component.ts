@@ -19,4 +19,8 @@ export class ViewSavedDateComponent {
     return 130;
   }
 
+  get marsRotation() {
+    return 240;
+  }
+
 }

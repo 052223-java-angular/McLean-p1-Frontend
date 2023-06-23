@@ -7,7 +7,7 @@
   border-radius: 50%;
 }
 
-.mercury, .venus {
+.mercury, .venus, .mars {
   position: absolute;
   height: 40%;
   width: 2px;
@@ -16,5 +16,24 @@
   background-color: red;
   transform-origin: 50% 100%;
   transform: rotate(var(--rotate));
+}
+
+.mercury::before {
+  content: ">>";
+  color: red;
+}
+
+.venus {
+  width: 4px;
+}
+
+.venus::after {
+  content: "phi = 1.618";
+  color: green;
+}
+
+.mars::after {
+  content: "ares";
+  color: green;
 }
 

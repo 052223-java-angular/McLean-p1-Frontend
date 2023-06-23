@@ -16,8 +16,22 @@ orbital map + time above horizon
 
 <button (click)="submit()" class="bg-white px-5 py-2 rounded-md shadow-xl">Save Current Conditions</button>
 
-<div class="container">
-  <div class="sun"></div>
-  <div class="mercury"></div>
-  <div class="venus"></div>
+<div class="solar-system">
+  <div class="ares" [style.--rotate.deg]="aresRotation"></div>
+  <div class="taurus" [style.--rotate.deg]="taurusRotation"></div>
+  <div class="gemini" [style.--rotate.deg]="geminiRotation"></div>
+  <div class="cancer" [style.--rotate.deg]="cancerRotation"></div>
+  <div class="leo" [style.--rotate.deg]="leoRotation"></div>
+  <div class="virgo" [style.--rotate.deg]="virgoRotation"></div>
+  <div class="libra" [style.--rotate.deg]="libraRotation"></div>
+  <div class="scorpio" [style.--rotate.deg]="scorpioRotation"></div>
+  <div class="sagittarius" [style.--rotate.deg]="sagittariusRotation"></div>
+  <div class="capricorn" [style.--rotate.deg]="capricornRotation"></div>
+  <div class="aquarius" [style.--rotate.deg]="aquariusRotation"></div>
+  <div class="pisces" [style.--rotate.deg]="piscesRotation"></div>
+
+  <div class="mercury" [style.--rotate.deg]="mercuryRotation"></div>
+  <div class="venus" [style.--rotate.deg]="venusRotation"></div>
+  <div class="mars" [style.--rotate.deg]="marsRotation"></div>
+  <div class="jupiter" [style.--rotate.deg]="jupiterRotation"></div>
 </div>

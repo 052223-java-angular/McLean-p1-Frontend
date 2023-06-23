@@ -3,30 +3,44 @@ p {
   justify-content: center;
 }
 
-.container {
-  display: flex;
-  height: 700px;
-  width: 700px;
-  align-items: center;
-  justify-content: center;
-}
-
-.sun {
+.solar-system {
+  --size: 450px;
   position: relative;
-  width: 8em;
-  height: 8em;
-  background-color: yellow;
+  width: var(--size);
+  height: var(--size);
+  border: 8px solid black;
   border-radius: 50%;
-  box-shadow: 0 0 3em white;
 }
 
-.mercury {
-  top: 10px;
+.ares, .taurus, .gemini, .cancer, .leo, .virgo, .libra, .scorpio, .sagittarius, .capricorn, .aquarius, .pisces {
   position: absolute;
-  height: 1em;
-  width: 1em;
-  border-radius: 50%;
-  border: 2px solid black;
+  height: 50%;
+  width: 2px;
+  top: 0%;
+  left: 50%;
+  background-color: green;
+  transform-origin: 50% 100%;
+  transform: rotate(var(--rotate));
+}
+
+.mercury, .venus, .mars, .jupiter {
+  position: absolute;
+  height: 40%;
+  width: 2px;
+  top: 10%;
+  left: 50%;
+  background-color: red;
+  transform-origin: 50% 100%;
+  transform: rotate(var(--rotate));
+}
+
+.mercury::before {
+  content: ">>";
+  color: red;
+}
+
+.venus {
+  width: 4px;
 }
 
 

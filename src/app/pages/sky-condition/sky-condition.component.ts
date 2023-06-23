@@ -45,6 +45,70 @@ export class SkyConditionComponent implements OnInit {
     });
   }
 
+  get aresRotation() {
+    return 0;
+  }
+
+  get taurusRotation() {
+    return 30;
+  }
+
+  get geminiRotation() {
+    return 60;
+  }
+
+  get cancerRotation() {
+    return 90;
+  }
+
+  get leoRotation() {
+    return 120;
+  }
+
+  get virgoRotation() {
+    return 150;
+  }
+
+  get libraRotation() {
+    return 180;
+  }
+
+  get scorpioRotation() {
+    return 210;
+  }
+
+  get sagittariusRotation() {
+    return 240;
+  }
+
+  get capricornRotation() {
+    return 270;
+  }
+
+  get aquariusRotation() {
+    return 300;
+  }
+
+  get piscesRotation() {
+    return 330;
+  }
+
+  get mercuryRotation() {
+    return this.apiList.response[0].phase;
+  }
+
+  get venusRotation() {
+    return this.apiList.response[1].phase;
+  }
+
+  get marsRotation() {
+    return this.apiList.response[2].phase;
+  }
+
+  get jupiterRotation() {
+    return this.apiList.response[3].phase;
+  }
+
   //need a button to save date
   submit(): void {
     //create save-data-payload from data called from api

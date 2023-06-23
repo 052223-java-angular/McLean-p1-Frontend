@@ -1,0 +1,24 @@
+:host {
+  display:grid;
+  place-items: center;
+}
+
+.solar-system {
+  --size: 450px;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  border: 8px solid black;
+  border-radius: 50%;
+}
+
+.mercury, .venus {
+  position: absolute;
+  height: 40%;
+  width: 4px;
+  top: 10%;
+  left: 50%;
+  transform-origin: 50% 100%;
+  transform: rotate(var(--rotate));
+}
+

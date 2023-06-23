@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class ViewSavedDateComponent {
 
+  get mercuryAngle() {
+    return 150;
+  }
+
+  get venusAngle() {
+    return 60;
+  }
+
 }

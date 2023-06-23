@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, timer } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api-service.service';
+import { SaveDatePayload } from 'src/app/dtmodels/save-date-payload';
 
 @Component({
   selector: 'app-sky-condition',
@@ -20,12 +21,10 @@ export class SkyConditionComponent implements OnInit {
 //
 //   private seconds$: Observable<number> = this.time$.pipe(map((now: Date) => now.getSeconds()));
 
-  apiList: any;
-  apiList2: any;
+  apiList: any = [];
+  apiList2: any = [];
 
   constructor(private apiService: ApiService) {
-    this.apiList = [];
-    this.apiList2 = [];
   }
 
 //   ----not my code, for testing purposes
@@ -34,8 +33,10 @@ export class SkyConditionComponent implements OnInit {
 //   }
 
   ngOnInit(): void {
+  //: save-data-payload
     this.apiService.getData().subscribe((data) => {
       console.log(data);
+      //JSON.parse(data);
       this.apiList = data;
     });
     this.apiService.getHorizonData().subscribe((moreData) => {
@@ -47,7 +48,14 @@ export class SkyConditionComponent implements OnInit {
   //need a button to save date
   submit(): void {
     //create save-data-payload from data called from api
+    //for created_at use epoch time
+    //let numDate: number = Date.parse(date);
 
+    //https://www.geeksforgeeks.org/angular-10-formatdate-method/
+
+    //payload = this.apiList.response[4].const
+    //this.apiList.response[5].const
+    console.log(this.apiList);
   }
 
   //need a save button on this page

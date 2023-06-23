@@ -14,7 +14,7 @@ orbital map + time above horizon
   <h3>planet</h3><span class="text-white">{{item.name}} @ {{item.constellation}}, time {{item.rightAscension.hours}}: {{item.rightAscension.minutes}}</span>
 </div>
 
-<button type="submit" class="bg-white px-5 py-2 rounded-md shadow-xl">Save Current Conditions</button>
+<button (click)="submit()" class="bg-white px-5 py-2 rounded-md shadow-xl">Save Current Conditions</button>
 
 <div class="container">
   <div class="sun"></div>

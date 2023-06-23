@@ -21,10 +21,31 @@
 .mercury::before {
   content: ">>";
   color: red;
+  position: absolute;
+  border-radius: 50%;
+  background-color: aqua;
+  width:3em;
+  height:3em;
 }
 
 .venus {
   width: 4px;
+  height: 45%;
+  top: 5%;
+}
+
+.venus::before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background-color: yellow;
+  width: 3em;
+  height:3em;
+}
+
+.mars {
+  height: 55%;
+  top: -5%;
 }
 
 .venus::after {

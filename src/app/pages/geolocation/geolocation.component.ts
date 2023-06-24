@@ -42,8 +42,8 @@ export class GeolocationComponent implements OnInit {
         console.log(this.location.latitude);
         console.log(this.location.longitude);
         this.token = sessionStorage.getItem('token');
-        this.geolocation = new FormControl(" ");
       })
+      this.geolocation = new FormControl(" ");
       this.geolocationForm = this.fb.group({
         geolocation: this.geolocation,
       });

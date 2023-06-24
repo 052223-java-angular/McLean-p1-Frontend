@@ -1,7 +1,16 @@
-<p>two drop down menus for selection of planets</p>
-<div class="center">
+<div class ="grid-container">
 
-<div id="circle"><div id="planet1"></div><div id="planet2"></div></div>
+  <form [formGroup]="harmonicForm">
+    <select formName="planetPicker1" formControlName="planet1" class="mx-5">
+      <option [ngValue]="null" disabled>Select First Planet</option>
+      <option *ngFor="let planet1 of planetSelectionOne" [ngValue]="planet1.name">{{planet1.name}}</option>
+    </select>
+
+    <select formName="planetPicker2" formControlName="planet2">
+      <option [ngValue]="null" disabled>Select Second Planet</option>
+      <option *ngFor="let planet2 of planetSelectionTwo" [ngValue]="planet2.name">{{planet2.name}}</option>
+    </select>
+    <button (click)="submit()" class="bg-white px-2 py-1 rounded-md shadow-xl">Submit</button>
+  </form>
 
 </div>
-

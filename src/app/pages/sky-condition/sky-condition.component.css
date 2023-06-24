@@ -23,7 +23,7 @@ p {
   transform: rotate(var(--rotate));
 }
 
-.mercury, .venus, .mars, .jupiter {
+.mercury, .venus, .mars, .jupiter, .saturn, .uranus, .neptune, .pluto {
   position: absolute;
   height: 40%;
   width: 2px;

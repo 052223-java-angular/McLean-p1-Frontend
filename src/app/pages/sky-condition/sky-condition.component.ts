@@ -93,20 +93,37 @@ export class SkyConditionComponent implements OnInit {
     return 330;
   }
 
+  //ra = right ascension
   get mercuryRotation() {
-    return this.apiList.response[0].phase;
+    return this.apiList.response[0].ra;
   }
 
   get venusRotation() {
-    return this.apiList.response[1].phase;
+    return this.apiList.response[1].ra;
   }
 
   get marsRotation() {
-    return this.apiList.response[2].phase;
+    return this.apiList.response[2].ra;
   }
 
   get jupiterRotation() {
-    return this.apiList.response[3].phase;
+    return this.apiList.response[3].ra;
+  }
+
+  get saturnRotation() {
+    return this.apiList.response[4].ra;
+  }
+
+  get uranusRotation() {
+    return this.apiList.response[5].ra;
+  }
+
+  get neptuneRotation() {
+    return this.apiList.response[6].ra;
+  }
+
+  get plutoRotation() {
+    return this.apiList.response[7].ra;
   }
 
   //need a button to save date

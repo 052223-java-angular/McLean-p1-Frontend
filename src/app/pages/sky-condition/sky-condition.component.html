@@ -1,20 +1,9 @@
-orbital map + time above horizon
-<br>
-<!--not my code, just testing-->
-<!--<p>{{ time$ | async | date: 'hh:mm:ss' }}</p>-->
-
-<!--.response is component of api's response-->
+<!--.response is component of api's response
 <div *ngFor="let item of apiList.response">
   <h3>planetName</h3><span class="text-white">{{item.name}} @ {{item.const}}</span>
 </div>
-
-<!--.data is component of api's response-->
-<div *ngFor="let item of apiList2.data">
-  <!--use raw instead of hours/minutes, truncate to 2 decimal points-->
-  <h3>planet</h3><span class="text-white">{{item.name}} @ {{item.constellation}}, time {{item.rightAscension.hours}}: {{item.rightAscension.minutes}}</span>
-</div>
-
-<button (click)="submit()" class="bg-white px-5 py-2 rounded-md shadow-xl">Save Current Conditions</button>
+-->
+<div class ="grid-container">
 
 <div class="solar-system">
   <div class="ares" [style.--rotate.deg]="aresRotation"></div>
@@ -38,4 +27,15 @@ orbital map + time above horizon
   <div class="uranus" [style.--rotate.deg]="uranusRotation"></div>
   <div class="neptune" [style.--rotate.deg]="neptuneRotation"></div>
   <div class="pluto" [style.--rotate.deg]="plutoRotation"></div>
+</div>
+
+<!--.data is component of api's response-->
+<div class="horizon">
+  <div class="horizonData" *ngFor="let item of apiList2.data">{{item.name}} @ {{item.constellation}}, time: {{item.rightAscension.hours}}: {{item.rightAscension.minutes}}</div>
+</div>
+
+<div class="save">
+<button (click)="submit()" class="bg-white px-5 py-2 rounded-md shadow-xl">Take snapshot</button>
+</div>
+
 </div>

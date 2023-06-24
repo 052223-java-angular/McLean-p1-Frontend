@@ -3,6 +3,10 @@ import { Observable, timer } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api-service.service';
 import { SaveDatePayload } from 'src/app/dtmodels/save-date-payload';
+import { SaveDateService } from 'src/app/services/save-date-service.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-sky-condition',
@@ -11,28 +15,15 @@ import { SaveDatePayload } from 'src/app/dtmodels/save-date-payload';
 })
 export class SkyConditionComponent implements OnInit {
 
-  //timer emits every 1 second
-//   ----not my code, for testing purposes
-//   private time:Observable<Date> = timer(0, 1000).pipe(map(tick => new Date()), shareReplay(1));
-//
-//   private hours$: Observable<number> = this.time$.pipe(map((now: Date) => now.getHours()));
-//
-//   private minutes$: Observable<number> = this.time$.pipe(map((now: Date) => now.getMinutes()));
-//
-//   private seconds$: Observable<number> = this.time$.pipe(map((now: Date) => now.getSeconds()));
-
+  token: any;
   apiList: any = [];
   apiList2: any = [];
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private saveDateService: SaveDateService, private router: Router, private toastr: ToastrService) {
   }
 
-//   ----not my code, for testing purposes
-//   get time$() {
-//     return this.time;
-//   }
-
   ngOnInit(): void {
+    this.token = sessionStorage.getItem('token');
   //: save-data-payload
     this.apiService.getData().subscribe((data) => {
       console.log(data);
@@ -93,7 +84,7 @@ export class SkyConditionComponent implements OnInit {
     return 330;
   }
 
-  //ra = right ascension
+  //ra = right ascension, current 0 degrees is located in pisces
   //ideally would include sun, moon, ceres as all 12 celestial orbs hold importance
   get mercuryRotation() {
     return this.apiList.response[0].ra;
@@ -127,19 +118,34 @@ export class SkyConditionComponent implements OnInit {
     return this.apiList.response[7].ra;
   }
 
-  //need a button to save date
   submit(): void {
-    //create save-data-payload from data called from api
     //for created_at use epoch time
-    //let numDate: number = Date.parse(date);
+    const current = (new Date).getTime();
 
-    //https://www.geeksforgeeks.org/angular-10-formatdate-method/
+    const payload: SaveDatePayload = {
+      name: 'test',
+      created_at: current,
+      mercury_phase: this.apiList.response[0].ra,
+      venus_phase: this.apiList.response[1].ra,
+      mars_phase: this.apiList.response[2].ra,
+      jupiter_phase: this.apiList.response[3].ra,
+      saturn_phase: this.apiList.response[4].ra,
+      uranus_phase: this.apiList.response[5].ra,
+      neptune_phase: this.apiList.response[6].ra,
+      pluto_phase: this.apiList.response[7].ra,
+      token: this.token,
+    }
 
-    //payload = this.apiList.response[4].const
-    //this.apiList.response[5].const
-    console.log(this.apiList);
+    this.saveDateService.saveDate(payload).subscribe({
+      next: value => {
+        this.toastr.success('Date saved');
+        this.router.navigate(['/about']);
+      },
+      error: error => {
+        this.toastr.error(error.error.message);
+      }
+    });
+
   }
-
-  //need a save button on this page
 
 }

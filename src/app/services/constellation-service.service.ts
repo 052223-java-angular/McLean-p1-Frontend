@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConstellationPayload } from '../dtmodels/constellation-payload';
 import { Observable } from 'rxjs';
-import { Auth } from '../dtmodels/auth';
 
 @Injectable({
   providedIn: 'root'

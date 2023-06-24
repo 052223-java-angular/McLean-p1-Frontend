@@ -1,6 +1,17 @@
-p {
-  color: white;
-  justify-content: center;
+.solar-system { grid-area: left; }
+.horizon { grid-area: right; }
+.save { grid-area: bottom; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'left right'
+    'bottom bottom';
+  gap: 10px;
+  background-color: rgba(50, 50, 50, .85);
+  background-filter: blur(10px);
+  margin: 20px;
+  place-items: center;
 }
 
 .solar-system {
@@ -10,6 +21,7 @@ p {
   height: var(--size);
   /*border: 8px solid black;*/
   border-radius: 50%;
+  margin: 40px;
 }
 
 .ares, .taurus, .gemini, .cancer, .leo, .virgo, .libra, .scorpio, .sagittarius, .capricorn, .aquarius, .pisces {
@@ -179,4 +191,18 @@ p {
     inset 0 0 20px rgba(0,0,0,0.3),
     inset 0 0 30px rgba(0,0,0,0.2),
     inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.horizon {
+
+}
+
+.horizonData {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.save {
+  margin: 20px;
 }

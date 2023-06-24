@@ -94,6 +94,7 @@ export class SkyConditionComponent implements OnInit {
   }
 
   //ra = right ascension
+  //ideally would include sun, moon, ceres as all 12 celestial orbs hold importance
   get mercuryRotation() {
     return this.apiList.response[0].ra;
   }

@@ -143,7 +143,16 @@ export class HarmonicMappingComponent implements OnInit {
     let decimalIsolation = fractionOfOne - truncated;
     console.log(decimalIsolation);
     //complete for higher harmonics with +/- more than 10% from whole number
-    this.harmonicValue = truncated;
+    var multiFactor = 1;
+    if(decimalIsolation > 0.2 && decimalIsolation < 0.4) {
+      var multiFactor = 3;
+    } else if(decimalIsolation < 0.6 && decimalIsolation > 0.4) {
+      var multiFactor = 2;
+    } else if(decimalIsolation < 0.8 && decimalIsolation > 0.6) {
+      var multiFactor = 3;
+    }
+    console.log("multiplication factor: " + multiFactor);
+    this.harmonicValue = Math.round(fractionOfOne*multiFactor);
   }
 
   resetImages() {

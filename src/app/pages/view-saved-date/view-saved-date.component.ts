@@ -7,4 +7,20 @@ import { Component } from '@angular/core';
 })
 export class ViewSavedDateComponent {
 
+  //set the angle from api data
+
+  constructor() { }
+
+  get mercuryRotation() {
+    return 65;
+  }
+
+  get venusRotation() {
+    return 130;
+  }
+
+  get marsRotation() {
+    return 240;
+  }
+
 }

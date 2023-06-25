@@ -1,5 +1,6 @@
 export interface GeolocationPayload {
-  name: String;
+  name: string;
   longitude: number;
   latitude: number;
+  token: string;
 }

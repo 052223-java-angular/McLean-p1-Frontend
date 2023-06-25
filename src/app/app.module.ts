@@ -19,8 +19,7 @@ import { ViewSavedDateComponent } from './pages/view-saved-date/view-saved-date.
 import { HarmonicMappingComponent } from './pages/harmonic-mapping/harmonic-mapping.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptorService } from 'src/app/services/auth-interceptor-service.service';
+
 
 @NgModule({
   declarations: [
@@ -50,12 +49,7 @@ import { AuthInterceptorService } from 'src/app/services/auth-interceptor-servic
       preventDuplicates: true
     }),
   ],
-  providers: [HttpClient,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
-      multi: true
-    }],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

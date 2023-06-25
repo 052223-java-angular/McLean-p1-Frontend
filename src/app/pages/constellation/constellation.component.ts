@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ConstellationService } from 'src/app/services/constellation-service.service';
 import { ConstellationPayload } from 'src/app/dtmodels/constellation-payload';
 import { AuthService } from 'src/app/services/auth-service.service';
@@ -12,6 +12,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./constellation.component.css']
 })
 export class ConstellationComponent implements OnInit {
+
+  token: any;
+
+  constellation!: FormControl;
 
   constellationForm!: FormGroup;
 
@@ -34,17 +38,23 @@ export class ConstellationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.token = sessionStorage.getItem('token');
+    this.constellation = new FormControl(" ");
     this.constellationForm = this.fb.group({
-    constellation: [null]
+      constellation: this.constellation,
     });
   }
 
   submit(): void {
-    console.log(this.constellationForm.value);
+    console.log(sessionStorage.getItem('token'));
 
     const payload: ConstellationPayload = {
-      constellation: this.constellationForm.value
+      constellation: this.constellationForm.controls['constellation'].value,
+      token: this.token
     }
+
+    //value of const isnt being stored to submit to backend
+    console.log(this.constellationForm.value);
 
     this.constellationService.setConstellation(payload).subscribe({
       next: value => {

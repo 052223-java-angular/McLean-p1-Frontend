@@ -1,39 +1,204 @@
-.center {
+.selection { grid-area: top; }
+.solar-system { grid-area: map; }
+.harmonic { grid-area: math; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'top top'
+    'map math';
+  gap: 10px;
+  background-color: rgba(50, 50, 50, .85);
+  background-filter: blur(10px);
+  padding: 10px;
+  place-items: center;
+}
+
+.selection {
   display: flex;
-  height: 600px;
-  align-items: center;
   justify-content: center;
 }
 
-#circle {
+p {
+  color: white;
+}
+
+.solar-system {
+  --size: 450px;
   position: relative;
-  height: 400px;
-  width: 400px;
+  width: var(--size);
+  height: var(--size);
+  /*border: 8px solid black;*/
   border-radius: 50%;
-  border: 2px solid black;
+  margin: 40px;
 }
 
-/*create compass*/
-
-#planet1 {
+.ares, .taurus, .gemini, .cancer, .leo, .virgo, .libra, .scorpio, .sagittarius, .capricorn, .aquarius, .pisces {
   position: absolute;
-  width: 90px;
-  height: 90px;
-  top: -45px;
-  left: 155px;
-  border-radius: 50%;
-  border: 2px solid black;
+  height: 50%;
+  width: 2px;
+  top: 0%;
+  left: 50%;
+  background-color: white;
+  transform-origin: 50% 100%;
+  transform: rotate(var(--rotate));
 }
 
-/*  use ::before, ::after for inserting images, specifically ::after content*/
-
-#planet2 {
+.mercury, .venus, .mars, .jupiter, .saturn, .uranus, .neptune, .pluto {
   position: absolute;
-  width: 90px;
-  height: 90px;
-  top: 355px;
-  left: 155px;
+  height: 50%;
+  width: 2px;
+  top: 0%;
+  left: 50%;
+  /*background-color: red;*/
+  transform-origin: 50% 100%;
+  transform: rotate(var(--rotate));
+}
+
+/*normalized planet sizes
+1500, 3800, (4000), 2100, 43400, 36200, 15800, 15300, 715*/
+
+.mercury::before {
+  content: "";
+  --size: 1.6em;
+  --center: -0.8em;
+  position: absolute;
   border-radius: 50%;
-  border: 2px solid red;
+  background-color: #FF8C00;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.venus::before {
+  content: "";
+  --size: 2.8em;
+  --center: -1.4em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #B8860B;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.mars::before {
+  content: "";
+  --size: 2.2em;
+  --center: -1.1em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #B22222;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.jupiter::before {
+  content: "";
+  --size: 5em;
+  --center: -2.5em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #EEE8AA;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.saturn::before {
+  content: "";
+  --size: 4em;
+  --center: -2em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #FF7F50;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.uranus::before {
+  content: "";
+  --size: 3em;
+  --center: -1.5em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #7FFFD4;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.neptune::before {
+  content: "";
+  --size: 3em;
+  --center: -1.5em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #00FFFF;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.pluto::before {
+  content: "";
+  --size: 1.2em;
+  --center: -0.6em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #FFEBCD;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
 }
 

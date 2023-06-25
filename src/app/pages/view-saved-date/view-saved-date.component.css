@@ -1,0 +1,97 @@
+.selection { grid-area: top; }
+.solar-system { grid-area: left; }
+.test { grid-area: right; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'top top'
+    'right left';
+  gap: 10px;
+  background-color: rgba(50, 50, 50, .85);
+  background-filter: blur(10px);
+  padding: 10px;
+  place-items: center;
+}
+
+.selection {
+  background-color: red;
+}
+
+.solar-system {
+  --size: 380px;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.mercury, .venus, .mars {
+  position: absolute;
+  height: 40%;
+  width: 2px;
+  top: 10%;
+  left: 50%;
+  background-color: red;
+  transform-origin: 50% 100%;
+  transform: rotate(var(--rotate));
+}
+
+.mercury::before {
+  content: ">>";
+  color: red;
+  position: absolute;
+  border-radius: 50%;
+  background-color: aqua;
+  width:3em;
+  height:3em;
+}
+
+.venus {
+  width: 4px;
+  height: 45%;
+  top: 5%;
+}
+
+.venus::before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background-color: yellow;
+  width: 3em;
+  height: 3em;
+}
+
+.mars {
+  height: 55%;
+  top: -5%;
+}
+
+.mars::before {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background-color: red;
+  width: 4em;
+  height: 4em;
+  left: -2em;
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.venus::after {
+  content: "phi = 1.618";
+  color: green;
+}
+
+.mars::after {
+  content: "ares";
+  color: green;
+}
+
+.test {
+}

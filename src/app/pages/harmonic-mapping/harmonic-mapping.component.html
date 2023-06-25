@@ -1,5 +1,7 @@
 <div class ="grid-container">
 
+  <div class="selection">
+  <p>Select two planets to find their harmonic relationship</p>
   <form [formGroup]="harmonicForm">
     <select formName="planetPicker1" formControlName="planet1" class="mx-5">
       <option [ngValue]="null" disabled>Select First Planet</option>
@@ -12,6 +14,7 @@
     </select>
     <button (click)="submit()" class="bg-white px-2 py-1 rounded-md shadow-xl">Submit</button>
   </form>
+  </div>
 
   <div *ngIf="isSubmitted && harmonicForm.valid" class="solar-system">
     <div class="ares" [style.--rotate.deg]="aresRotation"></div>
@@ -35,6 +38,10 @@
     <div *ngIf="isUranusSubmitted" class="uranus" [style.--rotate.deg]="uranusRotation"></div>
     <div *ngIf="isNeptuneSubmitted" class="neptune" [style.--rotate.deg]="neptuneRotation"></div>
     <div *ngIf="isPlutoSubmitted" class="pluto" [style.--rotate.deg]="plutoRotation"></div>
+  </div>
+
+  <div *ngIf="isSubmitted && harmonicForm.valid" class="harmonic">
+    <p>math</p>
   </div>
 
 </div>

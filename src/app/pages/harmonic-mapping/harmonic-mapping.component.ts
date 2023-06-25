@@ -49,8 +49,6 @@ export class HarmonicMappingComponent implements OnInit {
   isNeptuneSubmitted: boolean = false;
   isPlutoSubmitted: boolean = false;
 
-
-
   constructor(private fb:FormBuilder, private apiService: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -68,6 +66,10 @@ export class HarmonicMappingComponent implements OnInit {
 
   submit() {
     if(this.harmonicForm.valid) {
+      if(this.harmonicForm.get('planet1')!.value == this.harmonicForm.get('planet2')!.value) {
+        return;
+      }
+      this.resetImages();
       this.isSubmitted = true;
       const planet1 = this.harmonicForm.get('planet1')!.value;
       const planet2 = this.harmonicForm.get('planet2')!.value;
@@ -79,12 +81,42 @@ export class HarmonicMappingComponent implements OnInit {
     }
   }
 
+  resetImages() {
+    this.isSubmitted = false;
+    this.isMercurySubmitted = false;
+    this.isVenusSubmitted = false;
+    this.isMarsSubmitted = false;
+    this.isJupiterSubmitted = false;
+    this.isSaturnSubmitted = false;
+    this.isUranusSubmitted = false;
+    this.isNeptuneSubmitted = false;
+    this.isPlutoSubmitted = false;
+  }
+
   generateImage() {
     if(this.harmonicForm.get('planet1')!.value == "Mercury" || this.harmonicForm.get('planet2')!.value == "Mercury") {
       this.isMercurySubmitted = true;
     }
     if(this.harmonicForm.get('planet1')!.value == "Venus" || this.harmonicForm.get('planet2')!.value == "Venus") {
       this.isVenusSubmitted = true;
+    }
+    if(this.harmonicForm.get('planet1')!.value == "Mars" || this.harmonicForm.get('planet2')!.value == "Mars") {
+      this.isMarsSubmitted = true;
+    }
+    if(this.harmonicForm.get('planet1')!.value == "Jupiter" || this.harmonicForm.get('planet2')!.value == "Jupiter") {
+      this.isJupiterSubmitted = true;
+    }
+    if(this.harmonicForm.get('planet1')!.value == "Saturn" || this.harmonicForm.get('planet2')!.value == "Saturn") {
+      this.isSaturnSubmitted = true;
+    }
+    if(this.harmonicForm.get('planet1')!.value == "Uranus" || this.harmonicForm.get('planet2')!.value == "Uranus") {
+      this.isUranusSubmitted = true;
+    }
+    if(this.harmonicForm.get('planet1')!.value == "Neptune" || this.harmonicForm.get('planet2')!.value == "Neptune") {
+      this.isNeptuneSubmitted = true;
+    }
+    if(this.harmonicForm.get('planet1')!.value == "Pluto" || this.harmonicForm.get('planet2')!.value == "Pluto") {
+      this.isPlutoSubmitted = true;
     }
   }
 

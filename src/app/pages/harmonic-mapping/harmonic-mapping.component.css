@@ -1,11 +1,12 @@
 .selection { grid-area: top; }
 .solar-system { grid-area: map; }
+.harmonic { grid-area: math; }
 
 .grid-container {
   display: grid;
   grid-template-areas:
     'top top'
-    'map map';
+    'map math';
   gap: 10px;
   background-color: rgba(50, 50, 50, .85);
   background-filter: blur(10px);
@@ -14,7 +15,12 @@
 }
 
 .selection {
-  background-color: red;
+  display: flex;
+  justify-content: center;
+}
+
+p {
+  color: white;
 }
 
 .solar-system {

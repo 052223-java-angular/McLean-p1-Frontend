@@ -49,6 +49,8 @@ export class HarmonicMappingComponent implements OnInit {
   isNeptuneSubmitted: boolean = false;
   isPlutoSubmitted: boolean = false;
 
+  harmonicValue: number = 0;
+
   constructor(private fb:FormBuilder, private apiService: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -76,9 +78,72 @@ export class HarmonicMappingComponent implements OnInit {
       console.log(planet1);
       console.log(planet2);
       this.generateImage();
+      this.generateHarmonic();
     } else {
       console.error('invalid');
     }
+  }
+
+  generateHarmonic() {
+    let planetOne = 0;
+    let planetTwo = 0;
+    if(this.isMercurySubmitted && !planetOne) {
+      planetOne = this.mercuryRotation;
+    } else if(this.isMercurySubmitted) {
+      planetTwo = this.mercuryRotation;
+    }
+    if(this.isVenusSubmitted && !planetOne) {
+      planetOne = this.venusRotation;
+    } else if(this.isVenusSubmitted) {
+      planetTwo = this.venusRotation;
+    }
+    if(this.isMarsSubmitted && !planetOne) {
+      planetOne = this.marsRotation;
+    } else if(this.isVenusSubmitted) {
+      planetTwo = this.marsRotation;
+    }
+    if(this.isJupiterSubmitted && !planetOne) {
+      planetOne = this.jupiterRotation;
+    } else if(this.isJupiterSubmitted) {
+      planetTwo = this.jupiterRotation;
+    }
+    if(this.isSaturnSubmitted && !planetOne) {
+      planetOne = this.saturnRotation;
+    } else if(this.isSaturnSubmitted) {
+      planetTwo = this.saturnRotation;
+    }
+    if(this.isUranusSubmitted && !planetOne) {
+      planetOne = this.uranusRotation;
+    } else if(this.isUranusSubmitted) {
+      planetTwo = this.uranusRotation;
+    }
+    if(this.isNeptuneSubmitted && !planetOne) {
+      planetOne = this.neptuneRotation;
+    } else if(this.isNeptuneSubmitted) {
+      planetTwo = this.neptuneRotation;
+    }
+    if(this.isPlutoSubmitted && !planetOne) {
+      planetOne = this.plutoRotation;
+    } else if(this.isPlutoSubmitted) {
+      planetTwo = this.plutoRotation;
+    }
+    console.log(planetOne);
+    console.log(planetTwo);
+    let degreeOfSeparation = Math.abs(planetOne-planetTwo);
+    console.log("degrees of separation: " + degreeOfSeparation);
+    var fractionOfOne = 0;
+    if(degreeOfSeparation <= 180) {
+      var fractionOfOne = 360/degreeOfSeparation;
+    } else if(degreeOfSeparation > 180) {
+      var fractionOfOne = 360/(360-degreeOfSeparation)
+    }
+    console.log("fraction of one: " + fractionOfOne);
+    let truncated = Math.trunc(fractionOfOne);
+    console.log(truncated);
+    let decimalIsolation = fractionOfOne - truncated;
+    console.log(decimalIsolation);
+    //complete for higher harmonics with +/- more than 10% from whole number
+    this.harmonicValue = truncated;
   }
 
   resetImages() {

@@ -152,7 +152,11 @@ export class HarmonicMappingComponent implements OnInit {
       var multiFactor = 3;
     }
     console.log("multiplication factor: " + multiFactor);
-    this.harmonicValue = Math.round(fractionOfOne*multiFactor);
+    if(fractionOfOne > 50) {
+      this.harmonicValue = 1;
+    } else {
+      this.harmonicValue = Math.round(fractionOfOne*multiFactor);
+    }
   }
 
   resetImages() {

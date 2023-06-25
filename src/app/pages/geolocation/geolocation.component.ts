@@ -71,8 +71,6 @@ export class GeolocationComponent implements OnInit {
         }
       });
 
-      //give user option to select from possible choices of saved locations
-      //then set this user lon/lat in session
     }
 
 }

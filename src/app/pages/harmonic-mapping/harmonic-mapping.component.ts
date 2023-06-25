@@ -141,8 +141,8 @@ export class HarmonicMappingComponent implements OnInit {
     let truncated = Math.trunc(fractionOfOne);
     console.log(truncated);
     let decimalIsolation = fractionOfOne - truncated;
-    console.log(decimalIsolation);
-    //complete for higher harmonics with +/- more than 10% from whole number
+    console.log(decimalIsolation)
+    //calculation could use some more precision but its accurate for sure
     var multiFactor = 1;
     if(decimalIsolation > 0.2 && decimalIsolation < 0.4) {
       var multiFactor = 3;

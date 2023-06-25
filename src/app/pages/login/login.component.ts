@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Auth } from 'src/app/dtmodels/auth';
+import { LocationPayload } from 'src/app/dtmodels/location-payload';
 
 @Component({
   selector: 'app-login',
@@ -43,15 +44,15 @@ export class LoginComponent implements OnInit {
       next: value => {
         console.log("logged in", value.body);
 
-        if (value) {
-           const auth: Auth = {
-                  id : value.body!.id,
-                  username : value.body!.username,
-                  role : value.body!.role,
-                  token: value.body!.token,
-                  //retrieve locations and set home on login
-            }
+        const auth: Auth = {
+          id : value.body!.id,
+          username : value.body!.username,
+          role : value.body!.role,
+          locations : value.body!.locations,
+          token: value.body!.token,
         }
+
+        //console.log("printed locations: " + auth.locations[0].name);
         sessionStorage.setItem('token', value.body!.token);
         this.router.navigate(['/about']);
       },

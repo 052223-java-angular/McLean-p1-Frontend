@@ -1,21 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class ApiService implements OnInit {
+
+  lat: number = 0;
+  lon: number = 0;
 
   constructor(private httpClient: HttpClient) {  }
 
-  //make parallel API calls in Angular using Fetch and Axios
-  //rxjs Forkjoin or CombineLatest
+  ngOnInit(): void {
+    if(sessionStorage.getItem('userLat') == null || sessionStorage.getItem('userLon') == null) {
+      return;
+    }
+    this.lat = parseInt(sessionStorage.getItem('userLat')!);
+    this.lon = parseInt(sessionStorage.getItem('userLon')!);
+  }
+
   getData() {
-    return this.httpClient.get('https://www.astropical.space/api-ephem.php?lat=36.1&lon=-80.7');
+    return this.httpClient.get(`https://www.astropical.space/api-ephem.php?lat=${this.lat}&lon=${this.lon}`);
   }
 
   getHorizonData() {
-    return this.httpClient.get('https://api.visibleplanets.dev/v3?latitude=36.1&longitude=-80.7');
+    return this.httpClient.get(`https://api.visibleplanets.dev/v3?latitude=${this.lat}&longitude=${this.lon}`);
   }
 
   getLocation() {

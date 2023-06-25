@@ -31,11 +31,25 @@ export class HarmonicMappingComponent implements OnInit {
     { id: 1, name: "Pluto" },
   ];
 
+  apiList: any = [];
+
   harmonicForm!: FormGroup;
 
   planet1!: FormControl;
 
   planet2!: FormControl;
+
+  isSubmitted: boolean = false;
+  isMercurySubmitted: boolean = false;
+  isVenusSubmitted: boolean = false;
+  isMarsSubmitted: boolean = false;
+  isJupiterSubmitted: boolean = false;
+  isSaturnSubmitted: boolean = false;
+  isUranusSubmitted: boolean = false;
+  isNeptuneSubmitted: boolean = false;
+  isPlutoSubmitted: boolean = false;
+
+
 
   constructor(private fb:FormBuilder, private apiService: ApiService, private formBuilder: FormBuilder) { }
 
@@ -46,17 +60,112 @@ export class HarmonicMappingComponent implements OnInit {
       planet1: [null, Validators.required],
       planet2: [null, Validators.required],
     });
+    this.apiService.getData().subscribe((data) => {
+      console.log(data);
+      this.apiList = data;
+    });
   }
 
   submit() {
     if(this.harmonicForm.valid) {
+      this.isSubmitted = true;
       const planet1 = this.harmonicForm.get('planet1')!.value;
       const planet2 = this.harmonicForm.get('planet2')!.value;
       console.log(planet1);
       console.log(planet2);
+      this.generateImage();
     } else {
       console.error('invalid');
     }
+  }
+
+  generateImage() {
+    if(this.harmonicForm.get('planet1')!.value == "Mercury" || this.harmonicForm.get('planet2')!.value == "Mercury") {
+      this.isMercurySubmitted = true;
+    }
+    if(this.harmonicForm.get('planet1')!.value == "Venus" || this.harmonicForm.get('planet2')!.value == "Venus") {
+      this.isVenusSubmitted = true;
+    }
+  }
+
+  get aresRotation() {
+    return 0;
+  }
+
+  get taurusRotation() {
+    return 30;
+  }
+
+  get geminiRotation() {
+    return 60;
+  }
+
+  get cancerRotation() {
+    return 90;
+  }
+
+  get leoRotation() {
+    return 120;
+  }
+
+  get virgoRotation() {
+    return 150;
+  }
+
+  get libraRotation() {
+    return 180;
+  }
+
+  get scorpioRotation() {
+    return 210;
+  }
+
+  get sagittariusRotation() {
+    return 240;
+  }
+
+  get capricornRotation() {
+    return 270;
+  }
+
+  get aquariusRotation() {
+    return 300;
+  }
+
+  get piscesRotation() {
+    return 330;
+  }
+
+  get mercuryRotation() {
+    return this.apiList.response[0].ra;
+  }
+
+  get venusRotation() {
+    return this.apiList.response[1].ra;
+  }
+
+  get marsRotation() {
+    return this.apiList.response[2].ra;
+  }
+
+  get jupiterRotation() {
+    return this.apiList.response[3].ra;
+  }
+
+  get saturnRotation() {
+    return this.apiList.response[4].ra;
+  }
+
+  get uranusRotation() {
+    return this.apiList.response[5].ra;
+  }
+
+  get neptuneRotation() {
+    return this.apiList.response[6].ra;
+  }
+
+  get plutoRotation() {
+    return this.apiList.response[7].ra;
   }
 
 }

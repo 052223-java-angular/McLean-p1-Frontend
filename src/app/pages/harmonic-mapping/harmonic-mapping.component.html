@@ -13,4 +13,28 @@
     <button (click)="submit()" class="bg-white px-2 py-1 rounded-md shadow-xl">Submit</button>
   </form>
 
+  <div *ngIf="isSubmitted && harmonicForm.valid" class="solar-system">
+    <div class="ares" [style.--rotate.deg]="aresRotation"></div>
+    <div class="taurus" [style.--rotate.deg]="taurusRotation"></div>
+    <div class="gemini" [style.--rotate.deg]="geminiRotation"></div>
+    <div class="cancer" [style.--rotate.deg]="cancerRotation"></div>
+    <div class="leo" [style.--rotate.deg]="leoRotation"></div>
+    <div class="virgo" [style.--rotate.deg]="virgoRotation"></div>
+    <div class="libra" [style.--rotate.deg]="libraRotation"></div>
+    <div class="scorpio" [style.--rotate.deg]="scorpioRotation"></div>
+    <div class="sagittarius" [style.--rotate.deg]="sagittariusRotation"></div>
+    <div class="capricorn" [style.--rotate.deg]="capricornRotation"></div>
+    <div class="aquarius" [style.--rotate.deg]="aquariusRotation"></div>
+    <div class="pisces" [style.--rotate.deg]="piscesRotation"></div>
+
+    <div *ngIf="isMercurySubmitted" class="mercury" [style.--rotate.deg]="mercuryRotation"></div>
+    <div *ngIf="isVenusSubmitted" class="venus" [style.--rotate.deg]="venusRotation"></div>
+    <div *ngIf="isMarsSubmitted" class="mars" [style.--rotate.deg]="marsRotation"></div>
+    <div *ngIf="isJupiterSubmitted" class="jupiter" [style.--rotate.deg]="jupiterRotation"></div>
+    <div *ngIf="isSaturnSubmitted" class="saturn" [style.--rotate.deg]="saturnRotation"></div>
+    <div *ngIf="isUranusSubmitted" class="uranus" [style.--rotate.deg]="uranusRotation"></div>
+    <div *ngIf="isNeptuneSubmitted" class="neptune" [style.--rotate.deg]="neptuneRotation"></div>
+    <div *ngIf="isPlutoSubmitted" class="pluto" [style.--rotate.deg]="plutoRotation"></div>
+  </div>
+
 </div>

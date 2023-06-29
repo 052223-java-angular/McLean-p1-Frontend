@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { GeolocationPayload } from '../dtmodels/geolocation-payload';
 import { Observable } from 'rxjs';
 import { Auth } from '../dtmodels/auth';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeolocationService {
-  baseUrl = 'http://localhost:8080/mclean/api';
+  baseUrl = environment.apiBaseUrl;
+  //baseUrl = 'http://localhost:8080/mclean/api';
 
   constructor(private httpClient: HttpClient) { }
 

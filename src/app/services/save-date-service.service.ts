@@ -4,12 +4,14 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ReadDatePayload } from '../dtmodels/read-date-payload';
 import { Auth } from 'src/app/dtmodels/auth';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SaveDateService {
-  baseUrl = 'http://localhost:8080/mclean/api';
+  baseUrl = environment.apiBaseUrl;
+  //baseUrl = 'http://localhost:8080/mclean/api';
 
   constructor(private http: HttpClient) { }
 

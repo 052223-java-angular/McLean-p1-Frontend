@@ -5,13 +5,14 @@ import { Observable } from 'rxjs';
 import { Auth } from '../dtmodels/auth';
 import { LoginPayload } from '../dtmodels/login-payload';
 import { GeolocationPayload } from '../dtmodels/geolocation-payload';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  //baseUrl = environment.apiBaseUrl;
-  baseUrl = 'http://localhost:8080/mclean/api';
+  baseUrl = environment.apiBaseUrl;
+  //baseUrl = 'http://localhost:8080/mclean/api';
 
   constructor(private http: HttpClient) { }
 

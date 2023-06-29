@@ -1,0 +1,19 @@
+#sidebar {
+  background-color: rgba(50, 50, 50, .45);
+  background-filter: blur(10px);
+  color: white;
+  height: 100%;
+  width: 270px;
+  position: fixed;
+  z-index: 1;
+  top: 100px;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 80px;
+}
+
+.sidebarLink {
+  color: white;
+  margin-left: 45px;
+  margin-bottom: 20px;
+}

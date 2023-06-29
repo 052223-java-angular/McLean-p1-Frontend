@@ -2,3 +2,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background: url(assets/images/Luxor.jpg);
+  background-size: cover;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

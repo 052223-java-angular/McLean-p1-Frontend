@@ -10,6 +10,7 @@ import { GeolocationPayload } from '../dtmodels/geolocation-payload';
   providedIn: 'root'
 })
 export class AuthService {
+  //baseUrl = environment.apiBaseUrl;
   baseUrl = 'http://localhost:8080/mclean/api';
 
   constructor(private http: HttpClient) { }

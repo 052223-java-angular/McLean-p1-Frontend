@@ -2,5 +2,6 @@ div {
   background-color: rgba(50, 50, 50, .85);
   background-filter: blur(10px);
   color: white;
+  margin: 20px;
   padding: 20px;
 }

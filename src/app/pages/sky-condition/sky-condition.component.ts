@@ -24,10 +24,8 @@ export class SkyConditionComponent implements OnInit {
 
   ngOnInit(): void {
     this.token = sessionStorage.getItem('token');
-  //: save-data-payload
     this.apiService.getData().subscribe((data) => {
       console.log(data);
-      //JSON.parse(data);
       this.apiList = data;
     });
     this.apiService.getHorizonData().subscribe((moreData) => {

@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'McLean-p1-Frontend';
+
+  isLoggedIn: boolean = true;
+
 }

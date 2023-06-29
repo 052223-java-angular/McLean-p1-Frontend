@@ -197,6 +197,10 @@
 
 }
 
+p {
+  color: white;
+}
+
 .horizonData {
   display: flex;
   flex-direction: column;

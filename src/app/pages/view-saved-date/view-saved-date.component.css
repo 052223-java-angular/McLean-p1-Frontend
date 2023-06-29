@@ -15,67 +15,53 @@
 }
 
 .selection {
-  background-color: red;
+  color: white;
 }
 
 .solar-system {
-  --size: 380px;
+  --size: 450px;
   position: relative;
   width: var(--size);
   height: var(--size);
-  border: 2px solid black;
   border-radius: 50%;
+  margin: 40px;
 }
 
-.mercury, .venus, .mars {
+.ares, .taurus, .gemini, .cancer, .leo, .virgo, .libra, .scorpio, .sagittarius, .capricorn, .aquarius, .pisces {
   position: absolute;
-  height: 40%;
+  height: 50%;
   width: 2px;
-  top: 10%;
+  top: 0%;
   left: 50%;
-  background-color: red;
+  background-color: white;
   transform-origin: 50% 100%;
   transform: rotate(var(--rotate));
 }
 
+.mercury, .venus, .mars, .jupiter, .saturn, .uranus, .neptune, .pluto {
+  position: absolute;
+  height: 50%;
+  width: 2px;
+  top: 0%;
+  left: 50%;
+  transform-origin: 50% 100%;
+  transform: rotate(var(--rotate));
+}
+
+/*normalized planet sizes
+1500, 3800, (4000), 2100, 43400, 36200, 15800, 15300, 715*/
+
 .mercury::before {
-  content: ">>";
-  color: red;
-  position: absolute;
-  border-radius: 50%;
-  background-color: aqua;
-  width:3em;
-  height:3em;
-}
-
-.venus {
-  width: 4px;
-  height: 45%;
-  top: 5%;
-}
-
-.venus::before {
   content: "";
+  --size: 1.6em;
+  --center: -0.8em;
   position: absolute;
   border-radius: 50%;
-  background-color: yellow;
-  width: 3em;
-  height: 3em;
-}
-
-.mars {
-  height: 55%;
-  top: -5%;
-}
-
-.mars::before {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  background-color: red;
-  width: 4em;
-  height: 4em;
-  left: -2em;
+  background-color: #FF8C00;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
   box-shadow:
     inset 0 0 10px rgba(0,0,0,0.5),
     inset 0 0 20px rgba(0,0,0,0.3),
@@ -83,14 +69,130 @@
     inset 0 0 40px rgba(0,0,0,0.1);
 }
 
-.venus::after {
-  content: "phi = 1.618";
-  color: green;
+.venus::before {
+  content: "";
+  --size: 2.8em;
+  --center: -1.4em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #B8860B;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
 }
 
-.mars::after {
-  content: "ares";
-  color: green;
+.mars::before {
+  content: "";
+  --size: 2.2em;
+  --center: -1.1em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #B22222;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.jupiter::before {
+  content: "";
+  --size: 5em;
+  --center: -2.5em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #EEE8AA;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.saturn::before {
+  content: "";
+  --size: 4em;
+  --center: -2em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #FF7F50;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.uranus::before {
+  content: "";
+  --size: 3em;
+  --center: -1.5em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #7FFFD4;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.neptune::before {
+  content: "";
+  --size: 3em;
+  --center: -1.5em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #00FFFF;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+.pluto::before {
+  content: "";
+  --size: 1.2em;
+  --center: -0.6em;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #FFEBCD;
+  width: var(--size);
+  height: var(--size);
+  left: var(--center);
+  top: var(--center);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.5),
+    inset 0 0 20px rgba(0,0,0,0.3),
+    inset 0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 40px rgba(0,0,0,0.1);
 }
 
 .test {

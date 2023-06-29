@@ -37,4 +37,4 @@ jobs:
 
     - name: Deploy
       if: success()
-      run: aws s3 sync ./dist/McLean-p1-Frontend s3://McLean-p1-Frontend
+      run: aws s3 sync ./dist/mclean-p1-frontend s3://mclean-p1-frontend

@@ -39,4 +39,4 @@ jobs:
         run: |
           aws s3 sync dist/mc-lean-p1-frontend s3://mclean-p1-frontend
           echo "AWS CLI exit code: $?"
-          aws s3 ls s3://mclean-p1-frontend --profile=default
+          aws s3 ls s3://mclean-p1-frontend

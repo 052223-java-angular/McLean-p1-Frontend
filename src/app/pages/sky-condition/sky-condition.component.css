@@ -9,7 +9,6 @@
     'bottom bottom';
   gap: 10px;
   background-color: rgba(50, 50, 50, .85);
-  background-filter: blur(10px);
   margin: 20px;
   place-items: center;
 }
@@ -35,6 +34,33 @@
   transform: rotate(var(--rotate));
 }
 
+.ares::after {
+  content: "ares";
+  color: white;
+  position: absolute;
+  top: -125px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.taurus::after {
+  content: "taurus";
+  color:white;
+  position: absolute;
+  top: -125px;
+  left: 50%;
+  transform: translateX(-50%);
+} 
+
+.gemini::after {
+  content: "gemini";
+  color: white;
+  position: absolute;
+  top: -125px;
+  left: 50%;
+  transform: translateX(-50%);
+} 
+
 .mercury, .venus, .mars, .jupiter, .saturn, .uranus, .neptune, .pluto {
   position: absolute;
   height: 50%;
@@ -45,6 +71,10 @@
   transform-origin: 50% 100%;
   transform: rotate(var(--rotate));
 }
+
+/* .mercury:hover {
+  content: "mercury";
+} */
 
 /*normalized planet sizes
 1500, 3800, (4000), 2100, 43400, 36200, 15800, 15300, 715*/

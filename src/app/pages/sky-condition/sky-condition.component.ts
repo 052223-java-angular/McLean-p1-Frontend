@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, timer } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api-service.service';
 import { SaveDatePayload } from 'src/app/dtmodels/save-date-payload';
 import { SaveDateService } from 'src/app/services/save-date-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { formatDate } from '@angular/common';
+
 
 @Component({
   selector: 'app-sky-condition',

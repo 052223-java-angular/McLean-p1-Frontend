@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,11 @@ export class ApiService implements OnInit {
   lat: number = 0;
   lon: number = 0;
 
-  constructor(private httpClient: HttpClient) {  }
+  private httpClient: HttpClient;
+
+  constructor(private httpBackend: HttpBackend) {
+    this.httpClient = new HttpClient(httpBackend);
+  }
 
   ngOnInit(): void {
     if(sessionStorage.getItem('userLat') == null || sessionStorage.getItem('userLon') == null) {

@@ -7,13 +7,38 @@ option to add hotspot or custom location based on long/lat
 A submit button to save/update/delete the choice
 
 List for saved locations
+
+List home location details, name+long+lat
+Current home location: {{location}};
 <br>
 
+<p>Add popular location</p>
+<div class="form-container">
 <form [formGroup]="geolocationForm" (ngSubmit)="submit()">
-  <select formName="geolocationPicker" formControlName="geolocation">
+  <select id="popularForm" formName="geolocationPicker" formControlName="geolocation">
     <option [ngValue]="null" disabled>Select Country</option>
     <option *ngFor="let geolocation of geolocations" [ngValue]="geolocation.name">{{geolocation.name}}</option>
   </select>
   <br>
-  <button type="submit" class="bg-white px-5 py-2 rounded-md shadow-xl">Submit</button>
+  <button class="submit" type="submit">Submit</button>
 </form>
+</div>
+
+<p>List of saved locations</p>
+buttons for update and delete 
+<div *ngFor="let location of retrievedLocations; let myIndex=index;">
+  {{location}} <button (click)="deleteLocation(myIndex)">Remove</button>
+  <button (click)="updateLocation(myIndex)">Update</button>
+</div>
+
+<p>menu to add location by inputting long/lat</p>
+would need to add all the variables the geolocation object in storage has
+<div class="form-container">
+<form [formGroup]="addLocationForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="name" placeholder="Enter location name"><br>
+  <input type="text" formControlName="longitude" placeholder="Enter location longitude"><br>
+  <input type="text" formControlName="latitude" placeholder="Enter location latitude"><br>
+  <button class="submit" type="submit">Submit</button>
+</form>
+</div>
+

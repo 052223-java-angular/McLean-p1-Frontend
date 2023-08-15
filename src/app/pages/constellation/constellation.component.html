@@ -2,10 +2,10 @@
 <p>confirm selection, add to right sidebar?</p>
 
 <form [formGroup]="constellationForm" (ngSubmit)="submit()">
-  <select formName="constellationPicker" formControlName="constellation" class="px-5 py-2 rounded-md">
+  <select id="constForm" formName="constellationPicker" formControlName="constellation">
     <option [ngValue]="null" disabled>Select Constellation</option>
     <option *ngFor="let constellation of constellations" [ngValue]="constellation.name">{{constellation.name}}</option>
   </select>
   <br>
-  <button type="submit" class="bg-white px-5 py-2 rounded-md shadow-xl">Submit</button>
+  <button type="submit">Submit</button>
 </form>

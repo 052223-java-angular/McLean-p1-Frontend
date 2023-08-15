@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ConstellationService } from 'src/app/services/constellation-service.service';
 import { ConstellationPayload } from 'src/app/dtmodels/constellation-payload';
 import { AuthService } from 'src/app/services/auth-service.service';

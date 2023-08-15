@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class GeolocationService {
-  baseUrl = environment.apiBaseUrl;
-  //baseUrl = 'http://localhost:8080/mclean/api';
+  //baseUrl = environment.apiBaseUrl;
+  baseUrl = 'http://localhost:8080/mclean/api';
 
   constructor(private httpClient: HttpClient) { }
 

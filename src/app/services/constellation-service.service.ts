@@ -14,7 +14,11 @@ export class ConstellationService {
   constructor(private http: HttpClient) { }
 
   setConstellation(payload: ConstellationPayload): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/favorites/create`, payload);
+    return this.http.post<any>(`${this.baseUrl}/favorites/favorite`, payload);
+  }
+
+  getConstellation(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/favorites/favorite`);
   }
 
 }

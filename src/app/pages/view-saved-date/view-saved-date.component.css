@@ -14,7 +14,7 @@
 }
 
 .selection {
-  color: white;
+  color: black;
 }
 
 .solar-system {
@@ -195,4 +195,10 @@
 }
 
 .test {
+  --size: 450px;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  margin: 15px;
 }

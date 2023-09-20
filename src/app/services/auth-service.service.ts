@@ -4,7 +4,6 @@ import { RegisterPayload } from '../dtmodels/register-payload';
 import { Observable } from 'rxjs';
 import { Auth } from '../dtmodels/auth';
 import { LoginPayload } from '../dtmodels/login-payload';
-import { GeolocationPayload } from '../dtmodels/geolocation-payload';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -27,14 +26,6 @@ export class AuthService {
   //observe type tells us what we are interested in observing, must add httpresponse<t>
   login(payload: LoginPayload): Observable<HttpResponse<Auth>> {
     return this.http.post<Auth>(`${this.baseUrl}/auth/login`, payload, { observe : 'response'});
-  }
-
-  //https://vegibit.com/how-to-make-http-requests-in-angular-using-observables/
-
-  //at some point have to check if token already exists in localStorage and clear() it then set new token
-
-  setHome(locPayload: GeolocationPayload): Observable<GeolocationPayload> {
-    return this.http.post<GeolocationPayload>(`${this.baseUrl}/locations/create`, locPayload);
   }
 
 }

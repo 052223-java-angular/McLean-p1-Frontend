@@ -9,5 +9,4 @@ export interface SaveDatePayload {
   uranus_phase: number;
   neptune_phase: number;
   pluto_phase: number;
-  token: string;
 }

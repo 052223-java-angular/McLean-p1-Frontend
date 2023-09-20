@@ -15,7 +15,21 @@ export class GeolocationService {
   constructor(private httpClient: HttpClient) { }
 
   setGeolocation(payload: GeolocationPayload): Observable<any> {
-    return this.httpClient.post<any>(`${this.baseUrl}/locations/create`, payload);
+    return this.httpClient.post<any>(`${this.baseUrl}/locations/location`, payload);
+  }
+
+  //get request for locations to display
+  getGeolocation(): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/locations/locations`)
+  }
+
+  deleteGeolocation(id: any): Observable<any> {
+    console.log(`${this.baseUrl}/locations/locations/${id}`);
+    return this.httpClient.delete<any>(`${this.baseUrl}/locations/locations/${id}`)
+  }
+
+  updateGeolocation(id: any, payload: any): Observable<any> {
+    return this.httpClient.put<any>(`${this.baseUrl}/locations/locations/${id}`, payload)
   }
 
 }

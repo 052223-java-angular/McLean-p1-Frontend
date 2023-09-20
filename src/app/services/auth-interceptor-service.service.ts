@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AuthInterceptorService implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = "sldkf";
+    const token = localStorage.getItem('token');
 
     if(!token) {
       return next.handle(request);

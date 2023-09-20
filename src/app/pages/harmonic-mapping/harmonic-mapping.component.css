@@ -9,7 +9,6 @@
     'map math';
   gap: 10px;
   background-color: rgba(50, 50, 50, .85);
-  background-filter: blur(10px);
   padding: 10px;
   place-items: center;
 }
@@ -17,6 +16,12 @@
 .selection {
   display: flex;
   justify-content: center;
+}
+
+.selectOpts {
+  width: 200px;
+  height: 25px;
+  margin: 10px;
 }
 
 p {

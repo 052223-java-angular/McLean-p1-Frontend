@@ -5,10 +5,10 @@
     <form [formGroup]="savedDateForm" (ngSubmit)="submit()">
       <select formName="savedDatePicker" formControlName="savedDate">
         <option [ngValue]="null" disabled>Select Date</option>
-        <option *ngFor="let savedDate of savedDates" [ngValue]="savedDate.created_at">{{savedDate.created_at}}</option>
+        <option *ngFor="let savedDate of savedDates" [ngValue]="savedDate">{{savedDate.name}}</option>
       </select>
       <br>
-      <button type="submit" class="bg-white px-5 py-2 rounded-md shadow-xl text-black">Submit</button>
+      <button type="submit" class="submit">Submit</button>
     </form>
 
   </div>
@@ -37,6 +37,28 @@
     <div class="pluto" [style.--rotate.deg]="plutoRotation"></div>
   </div>
 
-  <div class="test">word</div>
+  <div class="test">
+    <div class="ares" [style.--rotate.deg]="aresRotation"></div>
+    <div class="taurus" [style.--rotate.deg]="taurusRotation"></div>
+    <div class="gemini" [style.--rotate.deg]="geminiRotation"></div>
+    <div class="cancer" [style.--rotate.deg]="cancerRotation"></div>
+    <div class="leo" [style.--rotate.deg]="leoRotation"></div>
+    <div class="virgo" [style.--rotate.deg]="virgoRotation"></div>
+    <div class="libra" [style.--rotate.deg]="libraRotation"></div>
+    <div class="scorpio" [style.--rotate.deg]="scorpioRotation"></div>
+    <div class="sagittarius" [style.--rotate.deg]="sagittariusRotation"></div>
+    <div class="capricorn" [style.--rotate.deg]="capricornRotation"></div>
+    <div class="aquarius" [style.--rotate.deg]="aquariusRotation"></div>
+    <div class="pisces" [style.--rotate.deg]="piscesRotation"></div>
+
+    <div class="mercury" [style.--rotate.deg]="savedMercuryRotation"></div>
+    <div class="venus" [style.--rotate.deg]="savedVenusRotation"></div>
+    <div class="mars" [style.--rotate.deg]="savedMarsRotation"></div>
+    <div class="jupiter" [style.--rotate.deg]="savedJupiterRotation"></div>
+    <div class="saturn" [style.--rotate.deg]="savedSaturnRotation"></div>
+    <div class="uranus" [style.--rotate.deg]="savedUranusRotation"></div>
+    <div class="neptune" [style.--rotate.deg]="savedNeptuneRotation"></div>
+    <div class="pluto" [style.--rotate.deg]="savedPlutoRotation"></div>
+  </div>
 
 </div>

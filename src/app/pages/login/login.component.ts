@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         }
 
         //console.log("printed locations: " + auth.locations[0].name);
-        sessionStorage.setItem('token', value.body!.token);
+        localStorage.setItem('token', value.body!.token);
         this.router.navigate(['/about']);
       },
       error: error => {

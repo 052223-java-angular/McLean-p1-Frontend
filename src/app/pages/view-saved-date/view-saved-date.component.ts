@@ -10,23 +10,36 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 })
 export class ViewSavedDateComponent implements OnInit {
 
-  token: any;
   apiList: any = [];
   savedDates: any;
+  selectedDates: any;
   savedDate!: FormControl;
   savedDateForm!: FormGroup;
 
-  constructor(private fb:FormBuilder, private apiService: ApiService, private saveDateService: SaveDateService) { }
+  // dropDownData = {
+  //   mercury_rotation: this.savedDate.value.mercury_rotation,
+  //   venus_rotation: this.savedDate.value.venus_rotation,
+  //   mars_rotation: this.savedDate.value.mars_rotation,
+  //   jupiter_rotation: this.savedDate.value.jupiter_rotation,
+  //   saturn_rotation: this.savedDate.value.saturn_rotation,
+  //   uranus_rotation: this.savedDate.value.uranus_rotation,
+  //   neptune_rotation: this.savedDate.value.neptune_rotation,
+  //   pluto_rotation: this.savedDate.value.pluto_rotation,
+  // }
+
+  constructor(
+    private fb:FormBuilder, 
+    private apiService: ApiService, 
+    private saveDateService: SaveDateService
+  ) { }
 
   ngOnInit(): void {
-    this.token = sessionStorage.getItem('token');
     this.apiService.getData().subscribe((data) => {
       console.log(data);
       this.apiList = data;
     });
 
-    const userId = 'd2af3afb-34ec-4f83-86be-68a0fc401c5d';
-    this.saveDateService.getDates(userId).subscribe({
+    this.saveDateService.getDates().subscribe({
       next: (response) => {
         this.savedDates = response;
         console.log(response);
@@ -43,7 +56,9 @@ export class ViewSavedDateComponent implements OnInit {
   }
 
   submit() {
-
+    //savedDate is bound to ngValue of the drop down form
+    this.selectedDates = this.savedDate.value;
+    console.log(this.selectedDates);
   }
 
   get aresRotation() {
@@ -125,5 +140,37 @@ export class ViewSavedDateComponent implements OnInit {
   get plutoRotation() {
     return this.apiList.response[7].ra;
   }
+
+  get savedMercuryRotation() {
+    return this.apiList.response[0].ra;
+  }
+
+  get savedVenusRotation() {
+    return this.apiList.response[1].ra;
+  }
+
+  get savedMarsRotation() {
+    return this.apiList.response[2].ra;
+  }
+
+  get savedJupiterRotation() {
+    return this.apiList.response[3].ra;
+  }
+
+  get savedSaturnRotation() {
+    return this.apiList.response[4].ra;
+  }
+
+  get savedUranusRotation() {
+    return this.apiList.response[5].ra;
+  }
+
+  get savedNeptuneRotation() {
+    return this.apiList.response[6].ra;
+  }
+
+  get savedPlutoRotation() {
+    return this.apiList.response[7].ra;
+  }  
 
 }

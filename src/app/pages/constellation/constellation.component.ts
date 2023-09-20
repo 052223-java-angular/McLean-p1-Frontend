@@ -13,11 +13,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ConstellationComponent implements OnInit {
 
-  token: any;
-
   constellation!: FormControl;
-
   constellationForm!: FormGroup;
+  selected: String | undefined;
 
   constellations = [
     { id: 1, name: "Ares" },
@@ -34,23 +32,31 @@ export class ConstellationComponent implements OnInit {
     { id: 12, name: "Pisces" }
   ];
 
-  constructor(private fb:FormBuilder, private constellationService: ConstellationService, private authService: AuthService, private router: Router, private toastr: ToastrService) {
-  }
+  constructor(
+    private fb:FormBuilder, 
+    private constellationService: ConstellationService, 
+    private authService: AuthService, 
+    private router: Router, 
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
-    this.token = sessionStorage.getItem('token');
     this.constellation = new FormControl(" ");
     this.constellationForm = this.fb.group({
       constellation: this.constellation,
     });
+
+    this.constellationService.getConstellation().subscribe({
+      next: value => {
+        this.selected = value.constellation;
+      },
+      error: error => console.log(error)
+    })
   }
 
   submit(): void {
-    console.log(sessionStorage.getItem('token'));
-
     const payload: ConstellationPayload = {
       constellation: this.constellationForm.controls['constellation'].value,
-      token: this.token
     }
 
     //value of const isnt being stored to submit to backend
@@ -59,11 +65,13 @@ export class ConstellationComponent implements OnInit {
     this.constellationService.setConstellation(payload).subscribe({
       next: value => {
         this.toastr.success('Constellation set');
-        this.router.navigate(['/about']);
       },
       error: error => {
         this.toastr.error(error.error.message);
       }
     });
+
+    this.selected = this.constellationForm.value.constellation;
+
   }
 }

@@ -28,7 +28,7 @@ export class GeolocationService {
     return this.httpClient.delete<any>(`${this.baseUrl}/locations/locations/${id}`)
   }
 
-  updateGeolocation(id: any, payload: any): Observable<any> {
+  updateGeolocation(id: any, payload: GeolocationPayload): Observable<any> {
     return this.httpClient.put<any>(`${this.baseUrl}/locations/locations/${id}`, payload)
   }
 

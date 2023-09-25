@@ -1,0 +1,21 @@
+<div id="rightbar">
+<p>rightbar works! || view-saved will be notes</p>
+
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()"> 
+    <div class="form-group">
+        <label for="text">Comment Text: </label>
+        <textarea id="text" formControlName="text" class="form-control"></textarea>
+        <div *ngIf="commentForm.get('text')?.invalid && (commentForm.get('text')?.dirty || commentForm.get('text')?.touched)" class="text-danger">
+            Comment text is required and must be at least 3 characters long.
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Comment</button>
+</form>
+
+<p>render comments from DB - have them update when new comment is added</p>
+<div *ngFor="let comment of comments">
+    <p>{{comment.comment}}</p>
+    <p>{{comment.created_at}}</p>
+</div>
+</div>

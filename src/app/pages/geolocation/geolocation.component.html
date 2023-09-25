@@ -1,10 +1,7 @@
 Short Description of purpose for user- output is based on current position on Earth.
 
-A submit button to save/update/delete the choice
-
-List for saved locations
-
 List home location details, name+long+lat
+
 Current home location: {{location.longitude}}, {{location.latitude}};
 <br>
 
@@ -22,9 +19,27 @@ Current home location: {{location.longitude}}, {{location.latitude}};
 
 <p>List of saved locations</p>
 
-<div *ngFor="let location of retrievedLocations">
-  {{location.name}}, {{location.latitude}} <button class="submit" (click)="deleteLocation(location)">Remove</button>
-  <button class="submit" (click)="updateLocation(location)">Update</button>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <td>name</td>
+        <td>latitude</td>
+        <td>longitude</td>
+        <td>isHome</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let location of retrievedLocations">
+        <td>{{location.name}}</td> 
+        <td>{{location.latitude}}</td>
+        <td>{{location.longitude}}</td>
+        <td>{{location.home}}</td>
+        <button class="submit" (click)="deleteLocation(location)">Remove</button>
+        <button class="submit" (click)="updateLocation(location)">Make home</button>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <p>menu to add location by inputting long/lat</p>

@@ -3,7 +3,7 @@
   <div class="selection">Comparison => Left: saved date, Right: current
 
     <form [formGroup]="savedDateForm" (ngSubmit)="submit()">
-      <select formName="savedDatePicker" formControlName="savedDate">
+      <select formName="savedDatePicker" formControlName="savedDate" class="selectOpts">
         <option [ngValue]="null" disabled>Select Date</option>
         <option *ngFor="let savedDate of savedDates" [ngValue]="savedDate">{{savedDate.name}}</option>
       </select>

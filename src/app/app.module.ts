@@ -19,6 +19,7 @@ import { ViewSavedDateComponent } from './pages/view-saved-date/view-saved-date.
 import { HarmonicMappingComponent } from './pages/harmonic-mapping/harmonic-mapping.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RightbarComponent } from './components/rightbar/rightbar.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     GeolocationComponent,
     SkyConditionComponent,
     ViewSavedDateComponent,
-    HarmonicMappingComponent
+    HarmonicMappingComponent,
+    RightbarComponent
   ],
   imports: [
     BrowserModule,

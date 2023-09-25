@@ -39,7 +39,6 @@ export class GeolocationComponent implements OnInit {
       private fb:FormBuilder, 
       private apiService: ApiService, 
       private geolocationService: GeolocationService, 
-      private authService: AuthService, 
       private router: Router, 
       private toastr: ToastrService
     ) {
@@ -93,12 +92,13 @@ export class GeolocationComponent implements OnInit {
       this.geolocationService.setGeolocation(payload).subscribe({
         next: value => {
           this.toastr.success('Geolocation set');
-          this.router.navigate(['/about']);
         },
         error: error => {
           this.toastr.error(error.error.message);
         }
       });
+
+      this.retrievedLocations.push(payload);
 
     }
 
@@ -121,6 +121,9 @@ export class GeolocationComponent implements OnInit {
           this.toastr.error(error.error.message);
         }
       })
+
+      this.retrievedLocations.push(payload);
+
     }
 
     deleteLocation(location:any) {
@@ -139,8 +142,25 @@ export class GeolocationComponent implements OnInit {
     }
 
     updateLocation(location:any) {
+      //make home
       console.log(location.name);
       console.log(location.latitude);
+
+      const payload: GeolocationPayload = {
+        name: location.name,
+        latitude: location.latitude,
+        longitude: location.longitude,
+        home: true
+      }
+
+      this.geolocationService.updateGeolocation(location.id, payload).subscribe({
+        next: value => {
+          console.log(value);
+        },
+        error: error => {
+          this.toastr.error(error.error.message);
+        }
+      })
     }
 
 }

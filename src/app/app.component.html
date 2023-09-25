@@ -6,6 +6,8 @@
 
 <div *ngIf="isLoggedIn"><app-sidebar></app-sidebar></div>
 
+<div><app-rightbar *ngIf="shouldRenderSidebar()"></app-rightbar></div>
+
 <footer>
   <p class="foot">&copy; pm</p>
 </footer>

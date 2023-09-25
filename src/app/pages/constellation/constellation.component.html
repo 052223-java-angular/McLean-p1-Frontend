@@ -1,12 +1,16 @@
 <p>confirm selection, add to right sidebar?</p>
 
 <form [formGroup]="constellationForm" (ngSubmit)="submit()">
-  <select id="constForm" formName="constellationPicker" formControlName="constellation">
+  <select id="constForm" formName="constellationPicker" formControlName="constellation" [(ngModel)]="selectedConstellation">
     <option [ngValue]="null" disabled>Select Constellation</option>
     <option *ngFor="let constellation of constellations" [ngValue]="constellation.name">{{constellation.name}}</option>
   </select>
   <br>
   <button class="submit" type="submit">Submit</button>
 
-  <p>{{selected}}</p>
+  <p>{{getSelectedConstellationName()}}</p>
 </form>
+
+<div>
+  <img class="constImg" [src]="selectedConstellation?.imgURL" *ngIf="selectedConstellation?.imgURL">
+</div>

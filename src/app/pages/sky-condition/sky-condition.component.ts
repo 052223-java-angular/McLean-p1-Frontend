@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api-service.service';
 import { SaveDatePayload } from 'src/app/dtmodels/save-date-payload';
 import { SaveDateService } from 'src/app/services/save-date-service.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -129,6 +129,7 @@ export class SkyConditionComponent implements OnInit {
     const formattedTime = `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
 
     const payload: SaveDatePayload = {
+      //should add currently set location to the name for identification - put current loc in local storage
       name: formattedTime,
       created_at: epoch,
       mercury_phase: this.apiList.response[0].ra,

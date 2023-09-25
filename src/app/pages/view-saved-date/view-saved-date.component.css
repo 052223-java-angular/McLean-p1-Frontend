@@ -202,3 +202,15 @@
   border-radius: 50%;
   margin: 15px;
 }
+
+.submit {
+  padding: 5px 10px 5px 10px;
+  border-radius: 0.4rem;
+  background-color: rgb(214, 135, 135);
+}
+
+.selectOpts {
+  width: 200px;
+  height: 25px;
+  margin: 10px;
+}

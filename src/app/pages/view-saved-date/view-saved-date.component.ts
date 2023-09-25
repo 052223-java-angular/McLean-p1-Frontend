@@ -16,17 +16,6 @@ export class ViewSavedDateComponent implements OnInit {
   savedDate!: FormControl;
   savedDateForm!: FormGroup;
 
-  // dropDownData = {
-  //   mercury_rotation: this.savedDate.value.mercury_rotation,
-  //   venus_rotation: this.savedDate.value.venus_rotation,
-  //   mars_rotation: this.savedDate.value.mars_rotation,
-  //   jupiter_rotation: this.savedDate.value.jupiter_rotation,
-  //   saturn_rotation: this.savedDate.value.saturn_rotation,
-  //   uranus_rotation: this.savedDate.value.uranus_rotation,
-  //   neptune_rotation: this.savedDate.value.neptune_rotation,
-  //   pluto_rotation: this.savedDate.value.pluto_rotation,
-  // }
-
   constructor(
     private fb:FormBuilder, 
     private apiService: ApiService, 
@@ -142,35 +131,59 @@ export class ViewSavedDateComponent implements OnInit {
   }
 
   get savedMercuryRotation() {
-    return this.apiList.response[0].ra;
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.mercury_phase;
   }
 
   get savedVenusRotation() {
-    return this.apiList.response[1].ra;
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.venus_phase;
   }
 
   get savedMarsRotation() {
-    return this.apiList.response[2].ra;
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.mars_phase;
   }
 
   get savedJupiterRotation() {
-    return this.apiList.response[3].ra;
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.jupiter_phase;
   }
 
   get savedSaturnRotation() {
-    return this.apiList.response[4].ra;
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.saturn_phase;
   }
 
   get savedUranusRotation() {
-    return this.apiList.response[5].ra;
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.uranus_phase;
   }
 
   get savedNeptuneRotation() {
-    return this.apiList.response[6].ra;
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.neptune_phase;
   }
 
   get savedPlutoRotation() {
-    return this.apiList.response[7].ra;
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.pluto_phase;
   }  
 
 }

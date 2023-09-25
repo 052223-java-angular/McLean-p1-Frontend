@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ConstellationService } from 'src/app/services/constellation-service.service';
 import { ConstellationPayload } from 'src/app/dtmodels/constellation-payload';
-import { AuthService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,27 +14,27 @@ export class ConstellationComponent implements OnInit {
 
   constellation!: FormControl;
   constellationForm!: FormGroup;
-  selected: String | undefined;
+  selected: string = '';
+  selectedConstellation: any = null;
 
   constellations = [
-    { id: 1, name: "Ares" },
-    { id: 2, name: "Taurus" },
-    { id: 3, name: "Gemini" },
-    { id: 4, name: "Cancer" },
-    { id: 5, name: "Leo" },
-    { id: 6, name: "Virgo" },
-    { id: 7, name: "Libra" },
-    { id: 8, name: "Scorpio" },
-    { id: 9, name: "Sagittarius" },
-    { id: 10, name: "Capricorn" },
-    { id: 11, name: "Aquarius" },
-    { id: 12, name: "Pisces" }
+    { id: 1, name: "Ares", imgURL: "assets/images/Aquarius.svg.png" },
+    { id: 2, name: "Taurus", imgURL: "assets/images/Taurus.svg.png" },
+    { id: 3, name: "Gemini", imgURL: "assets/images/Gemini.svg.png" },
+    { id: 4, name: "Cancer", imgURL: "assets/images/Cancer.svg.png" },
+    { id: 5, name: "Leo", imgURL: "assets/images/Leo.svg.png" },
+    { id: 6, name: "Virgo", imgURL: "assets/images/Virgo.svg.png" },
+    { id: 7, name: "Libra", imgURL: "assets/images/Libra.svg.png" },
+    { id: 8, name: "Scorpio", imgURL: "assets/images/Scorpio.svg.png" },
+    { id: 9, name: "Sagittarius", imgURL: "assets/images/Sagittarius.svg.png" },
+    { id: 10, name: "Capricorn", imgURL: "assets/images/Capricornus.svg.png" },
+    { id: 11, name: "Aquarius", imgURL: "assets/images/Aquarius.svg.png" },
+    { id: 12, name: "Pisces", imgURL: "assets/images/Pisces.svg.png" }
   ];
 
   constructor(
     private fb:FormBuilder, 
     private constellationService: ConstellationService, 
-    private authService: AuthService, 
     private router: Router, 
     private toastr: ToastrService
   ) { }
@@ -71,7 +70,12 @@ export class ConstellationComponent implements OnInit {
       }
     });
 
-    this.selected = this.constellationForm.value.constellation;
+    this.selectedConstellation = this.constellations.find(constellation => constellation.name === this.constellationForm.value.constellation);
 
   }
+
+  getSelectedConstellationName(): string {
+    return this.selectedConstellation ? this.selectedConstellation.name : '';
+  }
+
 }

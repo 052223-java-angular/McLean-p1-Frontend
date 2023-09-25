@@ -1,0 +1,18 @@
+#rightbar {
+    background-color: rgba(50, 50, 50, .45);
+    color: rgb(219, 120, 120);
+    height: 100%;
+    width: 270px;
+    position: fixed;
+    z-index: 1;
+    top: 100px;
+    right: 0;
+    overflow-x: hidden;
+    padding-top: 80px;
+  }
+  
+  .rightbarLink {
+    color: white;
+    margin-left: 45px;
+    margin-bottom: 20px;
+  }

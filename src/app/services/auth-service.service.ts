@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   //baseUrl = environment.apiBaseUrl;
   baseUrl = 'http://localhost:8080/mclean/api';
+  isLoggedIn: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -19,9 +20,6 @@ export class AuthService {
   register(payload: RegisterPayload): Observable<Auth> {
     return this.http.post<Auth>(`${this.baseUrl}/auth/register`, payload);
   }
-
-  //HttpClient.get() does not specify any options.  By default, ite returns the JSON data contained in the response body
-  //In order to get header information, we must specify it to HttpClient
 
   //observe type tells us what we are interested in observing, must add httpresponse<t>
   login(payload: LoginPayload): Observable<HttpResponse<Auth>> {

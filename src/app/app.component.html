@@ -4,7 +4,7 @@
 
 <div class="mainBody flex-grow"><router-outlet></router-outlet></div>
 
-<div *ngIf="isLoggedIn"><app-sidebar></app-sidebar></div>
+<div *ngIf="authService.isLoggedIn"><app-sidebar></app-sidebar></div>
 
 <div><app-rightbar *ngIf="shouldRenderSidebar()"></app-rightbar></div>
 

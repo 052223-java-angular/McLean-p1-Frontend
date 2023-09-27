@@ -18,7 +18,7 @@ export class ConstellationComponent implements OnInit {
   selectedConstellation: any = null;
 
   constellations = [
-    { id: 1, name: "Ares", imgURL: "assets/images/Aquarius.svg.png" },
+    { id: 1, name: "Aries", imgURL: "assets/images/Aries.svg.png" },
     { id: 2, name: "Taurus", imgURL: "assets/images/Taurus.svg.png" },
     { id: 3, name: "Gemini", imgURL: "assets/images/Gemini.svg.png" },
     { id: 4, name: "Cancer", imgURL: "assets/images/Cancer.svg.png" },

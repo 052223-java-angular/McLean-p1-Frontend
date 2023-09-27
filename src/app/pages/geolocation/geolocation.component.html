@@ -3,6 +3,14 @@ Short Description of purpose for user- output is based on current position on Ea
 List home location details, name+long+lat
 
 Current home location: {{location.longitude}}, {{location.latitude}};
+<table>
+  <tr>
+    <td>{{location.home}}</td>
+    <td>{{location.longitude}}</td>
+    <td>{{location.latitude}}</td>
+  </tr>
+</table>
+
 <br>
 
 <p>Add popular location</p>
@@ -20,7 +28,7 @@ Current home location: {{location.longitude}}, {{location.latitude}};
 <p>List of saved locations</p>
 
 <div>
-  <table>
+  <table class="geoTable">
     <thead>
       <tr>
         <td>name</td>

@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/services/api-service.service';
 import { GeolocationPayload } from 'src/app/dtmodels/geolocation-payload';
 import { GeolocationService } from 'src/app/services/geolocation-service.service';
-import { AuthService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-geolocation',
@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class GeolocationComponent implements OnInit {
 
-    //this is the current location from api
+    //this is the current location from api - but should be HOME value from database
     location: any;
     retrievedLocations: any;
     geolocationForm!: FormGroup;
@@ -46,15 +46,11 @@ export class GeolocationComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.apiService.getLocation().subscribe((response) => {
-        //gives current location
-        console.log(response);
-        this.location = response;
-        console.log(typeof(this.location));
-        //use this.location data to allow updating the settings
-        console.log(this.location.latitude);
-        console.log(this.location.longitude);
-      })
+      //could use this to give option to user to add THIS location
+      // this.apiService.getLocation().subscribe((response) => {
+      //   //gives current location
+      //   this.location = response;
+      // })
 
       this.geolocationForm = this.fb.group({
         geolocation: '',
@@ -65,6 +61,7 @@ export class GeolocationComponent implements OnInit {
       this.geolocationService.getGeolocation().subscribe({
         next: data => {
           this.retrievedLocations = data;
+          
         },
         error: err => console.log(err)
       })
@@ -130,6 +127,15 @@ export class GeolocationComponent implements OnInit {
       console.log(location.name);
       console.log(location.latitude);
       console.log(location.id);
+
+      //by getting before removing, we can delete even after submitting without refreshing page
+      this.geolocationService.getGeolocation().subscribe({
+        next: data => {
+          this.retrievedLocations = data;
+
+        },
+        error: err => console.log(err)
+      })
 
       this.geolocationService.deleteGeolocation(location.id).subscribe({
         next: value => {

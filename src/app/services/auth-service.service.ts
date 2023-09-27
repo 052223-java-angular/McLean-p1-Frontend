@@ -12,9 +12,11 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   //baseUrl = environment.apiBaseUrl;
   baseUrl = 'http://localhost:8080/mclean/api';
-  isLoggedIn: boolean = false;
+  private readonly LS_KEY = 'authToken';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   //Auth is the principal class
   register(payload: RegisterPayload): Observable<Auth> {
@@ -24,6 +26,22 @@ export class AuthService {
   //observe type tells us what we are interested in observing, must add httpresponse<t>
   login(payload: LoginPayload): Observable<HttpResponse<Auth>> {
     return this.http.post<Auth>(`${this.baseUrl}/auth/login`, payload, { observe : 'response'});
+  }
+
+  setAuthToken(token: string): void {
+    localStorage.setItem(this.LS_KEY, token);
+  }
+
+  getAuthToken(): string | null {
+    return localStorage.getItem(this.LS_KEY);
+  }
+
+  clearAuthToken(): void {
+    localStorage.removeItem(this.LS_KEY);
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.getAuthToken();
   }
 
 }

@@ -57,7 +57,11 @@ export class LoginComponent implements OnInit {
 
         //console.log("printed locations: " + auth.locations[0].name);
         localStorage.setItem('token', value.body!.token);
-        this.authService.isLoggedIn = true;
+
+        //these 2 lines are for handling log in state for rendering the left sidebar
+        const authToken = value.body!.token;
+        this.authService.setAuthToken(authToken);
+
         this.router.navigate(['/about']);
       },
       error: error => {

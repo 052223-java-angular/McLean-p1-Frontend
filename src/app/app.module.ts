@@ -9,7 +9,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AboutComponent } from './pages/about/about.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { GeolocationComponent } from './pages/geolocation/geolocation.component';
@@ -20,6 +20,7 @@ import { HarmonicMappingComponent } from './pages/harmonic-mapping/harmonic-mapp
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RightbarComponent } from './components/rightbar/rightbar.component';
+import { EditcommentComponent } from './components/rightbar/editcomment/editcomment.component';
 
 
 @NgModule({
@@ -37,11 +38,13 @@ import { RightbarComponent } from './components/rightbar/rightbar.component';
     SkyConditionComponent,
     ViewSavedDateComponent,
     HarmonicMappingComponent,
-    RightbarComponent
+    RightbarComponent,
+    EditcommentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

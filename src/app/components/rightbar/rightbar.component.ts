@@ -39,36 +39,77 @@ export class RightbarComponent implements OnInit {
 
       //send to backend
       const payload: CommentsPayload = {
+        id: '',
         comment: this.commentForm.controls['text'].value,
         created_at: new Date().getTime(),
         edited_at: new Date().getTime(),
+        userId: '',
+        isEditing: false
       }
+
+      //optimistic update: add the new comment to the frontend array without waiting
+      this.comments.push(payload);
 
       this.commentService.postComments(payload).subscribe(result => {
         console.log(result);
+        payload.id = result.id;
+        payload.userId = result.userId;
+      },
+      error => {
+        console.log('error creating comment: ', error);
+        const index = this.comments.indexOf(payload);
+        if(index !== -1) {
+          this.comments.splice(index, 1);
+        }
       })
 
-      this.comments.push(payload);
+      
     }
   }
 
-  userIdCheck(userId: string):boolean {
+  userIdCheck(userId: string): boolean {
     console.log(userId);
     console.log(this.authService.getUserId())
     console.log(userId===this.authService.getUserId())
     return userId===this.authService.getUserId();
   }
 
-  delete(id: string) {
-    //import auth-service to compare post user id to logged in user id
+  delete(comment: CommentsPayload): void {
+    //optimistic update: remove the comment from frontend immediately
+    const index = this.comments.indexOf(comment);
+    if(index !== -1) {
+      this.comments.splice(index, 1);
+    }
 
     //delete from DB
-    this.commentService.deleteComment(id).subscribe(result => {
+    this.commentService.deleteComment(comment.id).subscribe(result => {
       console.log(result);
     })
 
     //update comment array on page
 
+  }
+
+  enableEdit(comment: CommentsPayload) {
+    comment.isEditing = true;
+  }
+
+  cancelEditComment(comment: CommentsPayload) {
+    comment.isEditing = false;
+  }
+
+  saveEditedComment(editedComment: CommentsPayload): void {
+
+    editedComment.edited_at = new Date().getTime();
+
+    this.commentService.updateComment(editedComment.id, editedComment).subscribe(result => {
+        console.log(result);
+        Object.assign(editedComment, result);
+        editedComment.isEditing = false;
+    },
+    (error) => {
+      console.error('Error updating comment: ', error);
+    })
   }
 
 }

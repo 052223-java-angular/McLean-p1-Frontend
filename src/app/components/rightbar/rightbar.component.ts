@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommentsPayload } from 'src/app/dtmodels/comments-payload';
+import { AuthService } from 'src/app/services/auth-service.service';
 import { CommentsService } from 'src/app/services/comments.service';
 
 @Component({
@@ -11,11 +12,13 @@ import { CommentsService } from 'src/app/services/comments.service';
 export class RightbarComponent implements OnInit {
 
   commentForm!: FormGroup;
+  //response from backend contains userId
   comments: any;
 
   constructor(
     private fb: FormBuilder,
-    private commentService: CommentsService
+    private commentService: CommentsService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +50,25 @@ export class RightbarComponent implements OnInit {
 
       this.comments.push(payload);
     }
+  }
+
+  userIdCheck(userId: string):boolean {
+    console.log(userId);
+    console.log(this.authService.getUserId())
+    console.log(userId===this.authService.getUserId())
+    return userId===this.authService.getUserId();
+  }
+
+  delete(id: string) {
+    //import auth-service to compare post user id to logged in user id
+
+    //delete from DB
+    this.commentService.deleteComment(id).subscribe(result => {
+      console.log(result);
+    })
+
+    //update comment array on page
+
   }
 
 }

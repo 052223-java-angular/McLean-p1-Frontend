@@ -1,31 +1,37 @@
 #rightbar {
-    background-color: rgba(50, 50, 50, .45);
-    color: rgb(219, 120, 120);
-    height: 100%;
-    width: 270px;
-    position: fixed;
-    z-index: 1;
-    top: 100px;
-    right: 0;
-    overflow-x: hidden;
-    padding-top: 80px;
-  }
+  background-color: rgba(50, 50, 50, .45);
+  color: rgb(219, 120, 120);
+  height: 100%;
+  width: 270px;
+  position: fixed;
+  z-index: 1;
+  top: 100px;
+  right: 0;
+  overflow-x: hidden;
+  padding-top: 25px;
+}
+
+#comment-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
   
-  .rightbarLink {
-    color: white;
-    margin-left: 45px;
-    margin-bottom: 20px;
-  }
+.rightbarLink {
+  color: white;
+  margin-left: 45px;
+  margin-bottom: 20px;
+}
 
-  .comment {
-    background-color:rgb(214, 135, 135);
-    color: white;
-    margin: 5px;
-  }
+.comment {
+  background-color:rgb(214, 135, 135);
+  color: white;
+  margin: 5px;
+}
 
-  .commentbtn {
-    padding: 5px 10px 5px 10px;
-    border-radius: 0.4rem;
-    background-color: rgb(214, 135, 135);
-    color: white;
-  }
+.commentbtn {
+  padding: 5px 10px 5px 10px;
+  border-radius: 0.4rem;
+  background-color: rgb(214, 135, 135);
+  color: white;
+}

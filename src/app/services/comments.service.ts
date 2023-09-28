@@ -19,6 +19,10 @@ export class CommentsService {
     return this.http.post<any>(`${this.baseUrl}/comments/comment`, payload);
   }
 
+  deleteComment(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/comments/comment/${id}`);
+  }
+
   
 
 }

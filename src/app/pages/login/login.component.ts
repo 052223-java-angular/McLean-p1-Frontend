@@ -62,6 +62,8 @@ export class LoginComponent implements OnInit {
         const authToken = value.body!.token;
         this.authService.setAuthToken(authToken);
 
+        this.authService.setUserId(value.body!.id);
+
         this.router.navigate(['/about']);
       },
       error: error => {

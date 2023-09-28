@@ -13,10 +13,16 @@ export class AuthService {
   //baseUrl = environment.apiBaseUrl;
   baseUrl = 'http://localhost:8080/mclean/api';
   private readonly LS_KEY = 'authToken';
+  private userId: string | null = null;
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) { 
+    const storedUserId = localStorage.getItem('userId');
+    if(storedUserId) {
+      this.setUserId(storedUserId);
+    }
+  }
 
   //Auth is the principal class
   register(payload: RegisterPayload): Observable<Auth> {
@@ -42,6 +48,26 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return !!this.getAuthToken();
+  }
+
+  //mostly for comparing post user id with logged in user id for delete/edit func
+
+  setUserId(userId: string):void {
+    this.userId = userId;
+    localStorage.setItem('userId', userId);
+  }
+
+  getUserId(): string | null {
+    return this.userId;
+  }
+
+  clearSession(): void {
+    this.userId = null;
+    localStorage.removeItem('userId');
+  }
+
+  isLoggingIn(): boolean {
+    return !!this.userId;
   }
 
 }

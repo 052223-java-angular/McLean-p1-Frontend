@@ -1,5 +1,6 @@
 <div id="rightbar">
-<p>rightbar works! || view-saved will be notes</p>
+
+<div id="comment-container">
 
 <form [formGroup]="commentForm" (ngSubmit)="onSubmit()"> 
     <div class="form-group">
@@ -16,6 +17,10 @@
 <p>Comment section</p>
 <div *ngFor="let comment of comments" class="comment">
     <p>{{comment.comment}}</p>
-    <p>{{comment.created_at}}</p>
+    <p>{{comment.created_at | date: 'medium'}}</p>
+    <button *ngIf="userIdCheck(comment.userId)" (click)="delete(comment.id)">delete</button>
 </div>
+
+</div>
+
 </div>

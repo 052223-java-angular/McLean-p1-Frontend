@@ -21,9 +21,10 @@
     <p>{{comment.edited_at | date: 'medium'}}</p>
 
     <app-editcomment [editedComment]="comment" (onSave)="saveEditedComment($event)" (onCancel)="cancelEditComment(comment)" *ngIf="comment.isEditing"></app-editcomment>
-
+    <span *ngIf="!isEditing">
     <button *ngIf="userIdCheck(comment.userId)" (click)="delete(comment)" class="comments-btn2">delete</button>
     <button *ngIf="userIdCheck(comment.userId)" (click)="enableEdit(comment)" class="comments-btn2">edit</button>
+    </span>
 </div>
 
 </div>

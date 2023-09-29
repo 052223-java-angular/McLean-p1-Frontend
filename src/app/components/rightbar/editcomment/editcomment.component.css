@@ -1,0 +1,10 @@
+.edit-btn {
+    padding: 5px 10px 5px 10px;
+    border-radius: 0.4rem;
+    background-color: rgb(241, 149, 62);
+    color: white;
+}
+
+.input-box {
+    color: black;
+}

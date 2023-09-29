@@ -14,6 +14,7 @@ export class RightbarComponent implements OnInit {
   commentForm!: FormGroup;
   //response from backend contains userId
   comments: any;
+  isEditing: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -92,10 +93,13 @@ export class RightbarComponent implements OnInit {
 
   enableEdit(comment: CommentsPayload) {
     comment.isEditing = true;
+    //make local to hide delete/edit
+    this.isEditing = true;
   }
 
   cancelEditComment(comment: CommentsPayload) {
     comment.isEditing = false;
+    this.isEditing = false;
   }
 
   saveEditedComment(editedComment: CommentsPayload): void {
@@ -106,6 +110,7 @@ export class RightbarComponent implements OnInit {
         console.log(result);
         Object.assign(editedComment, result);
         editedComment.isEditing = false;
+        this.isEditing = false;
     },
     (error) => {
       console.error('Error updating comment: ', error);

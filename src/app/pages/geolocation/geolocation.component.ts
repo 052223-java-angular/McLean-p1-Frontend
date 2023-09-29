@@ -5,7 +5,6 @@ import { GeolocationPayload } from 'src/app/dtmodels/geolocation-payload';
 import { GeolocationService } from 'src/app/services/geolocation-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-geolocation',
@@ -80,22 +79,25 @@ export class GeolocationComponent implements OnInit {
       console.log(this.geolocationForm.value['geolocation'].latitude);
 
       const payload: GeolocationPayload = {
+        id: '',
         name: this.geolocationForm.controls['geolocation'].value.name,
         longitude: this.geolocationForm.controls['geolocation'].value.longitude,
         latitude: this.geolocationForm.controls['geolocation'].value.latitude,
         home: false,
       }
 
+      //optimistic update
+      this.retrievedLocations.push(payload);
+
       this.geolocationService.setGeolocation(payload).subscribe({
         next: value => {
+          payload.id = value.id;
           this.toastr.success('Geolocation set');
         },
         error: error => {
           this.toastr.error(error.error.message);
         }
       });
-
-      this.retrievedLocations.push(payload);
 
     }
 
@@ -104,22 +106,25 @@ export class GeolocationComponent implements OnInit {
       console.log(this.addLocationForm.controls['longitude'].value);
 
       const payload: GeolocationPayload = {
+        id: '',
         name: this.addLocationForm.controls['name'].value,
         longitude: this.addLocationForm.controls['longitude'].value,
         latitude: this.addLocationForm.controls['latitude'].value,
         home: false
       }
 
+      //optimistic update
+      this.retrievedLocations.push(payload);
+
       this.geolocationService.setGeolocation(payload).subscribe({
         next: value => {
+          payload.id = value.id;
           this.toastr.success('Geolocation set');
         },
         error: error => {
           this.toastr.error(error.error.message);
         }
       })
-
-      this.retrievedLocations.push(payload);
 
     }
 
@@ -128,18 +133,16 @@ export class GeolocationComponent implements OnInit {
       console.log(location.latitude);
       console.log(location.id);
 
-      //by getting before removing, we can delete even after submitting without refreshing page
-      this.geolocationService.getGeolocation().subscribe({
-        next: data => {
-          this.retrievedLocations = data;
+      //optimistic update
+      const index = this.retrievedLocations.indexOf(location);
+      if(index !== -1) {
+        this.retrievedLocations.splice(index, 1);
+      }
 
-        },
-        error: err => console.log(err)
-      })
 
       this.geolocationService.deleteGeolocation(location.id).subscribe({
         next: value => {
-          this.retrievedLocations = this.retrievedLocations.filter((loc: { id: any; }) => loc.id !== location.id);
+          console.log(value);
         },
         error: error => {
           this.toastr.error(error.error.message);
@@ -153,6 +156,7 @@ export class GeolocationComponent implements OnInit {
       console.log(location.latitude);
 
       const payload: GeolocationPayload = {
+        id: '',
         name: location.name,
         latitude: location.latitude,
         longitude: location.longitude,

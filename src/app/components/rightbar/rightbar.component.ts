@@ -41,6 +41,7 @@ export class RightbarComponent implements OnInit {
       //send to backend
       const payload: CommentsPayload = {
         id: '',
+        username: '',
         comment: this.commentForm.controls['text'].value,
         created_at: new Date().getTime(),
         edited_at: new Date().getTime(),
@@ -55,6 +56,7 @@ export class RightbarComponent implements OnInit {
         console.log(result);
         payload.id = result.id;
         payload.userId = result.userId;
+        payload.username = result.username;
       },
       error => {
         console.log('error creating comment: ', error);

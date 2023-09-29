@@ -128,6 +128,7 @@ export class GeolocationComponent implements OnInit {
 
     }
 
+    //need to account for possibility home location is deleted
     deleteLocation(location:any) {
       console.log(location.name);
       console.log(location.latitude);
@@ -162,6 +163,10 @@ export class GeolocationComponent implements OnInit {
         longitude: location.longitude,
         home: true
       }
+
+      //optimistic update
+      location.home = true;
+      //filter through current retrieved locations to find current home - should be set
 
       this.geolocationService.updateGeolocation(location.id, payload).subscribe({
         next: value => {

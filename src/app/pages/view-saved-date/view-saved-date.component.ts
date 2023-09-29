@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api-service.service';
 import { SaveDateService } from 'src/app/services/save-date-service.service';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { SaveDatePayload } from 'src/app/dtmodels/save-date-payload';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-view-saved-date',
@@ -12,23 +10,25 @@ import { SaveDatePayload } from 'src/app/dtmodels/save-date-payload';
 })
 export class ViewSavedDateComponent implements OnInit {
 
-  token: any;
   apiList: any = [];
   savedDates: any;
+  selectedDates: any;
   savedDate!: FormControl;
   savedDateForm!: FormGroup;
 
-  constructor(private fb:FormBuilder, private apiService: ApiService, private saveDateService: SaveDateService) { }
+  constructor(
+    private fb:FormBuilder, 
+    private apiService: ApiService, 
+    private saveDateService: SaveDateService
+  ) { }
 
   ngOnInit(): void {
-    this.token = sessionStorage.getItem('token');
     this.apiService.getData().subscribe((data) => {
       console.log(data);
       this.apiList = data;
     });
 
-    const userId = 'd2af3afb-34ec-4f83-86be-68a0fc401c5d';
-    this.saveDateService.getDates(userId).subscribe({
+    this.saveDateService.getDates().subscribe({
       next: (response) => {
         this.savedDates = response;
         console.log(response);
@@ -45,7 +45,9 @@ export class ViewSavedDateComponent implements OnInit {
   }
 
   submit() {
-
+    //savedDate is bound to ngValue of the drop down form
+    this.selectedDates = this.savedDate.value;
+    console.log(this.selectedDates);
   }
 
   get aresRotation() {
@@ -127,5 +129,61 @@ export class ViewSavedDateComponent implements OnInit {
   get plutoRotation() {
     return this.apiList.response[7].ra;
   }
+
+  get savedMercuryRotation() {
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.mercury_phase;
+  }
+
+  get savedVenusRotation() {
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.venus_phase;
+  }
+
+  get savedMarsRotation() {
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.mars_phase;
+  }
+
+  get savedJupiterRotation() {
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.jupiter_phase;
+  }
+
+  get savedSaturnRotation() {
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.saturn_phase;
+  }
+
+  get savedUranusRotation() {
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.uranus_phase;
+  }
+
+  get savedNeptuneRotation() {
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.neptune_phase;
+  }
+
+  get savedPlutoRotation() {
+    if(this.selectedDates===undefined) {
+      return -1;
+    }
+    return this.selectedDates.pluto_phase;
+  }  
 
 }

@@ -1,3 +1,6 @@
 p {
   text-align: center;
+  font-family: Papyrus;
+  font-size: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }

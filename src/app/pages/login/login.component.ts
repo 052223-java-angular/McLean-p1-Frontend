@@ -4,9 +4,7 @@ import { LoginPayload } from 'src/app/dtmodels/login-payload';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Auth } from 'src/app/dtmodels/auth';
-import { LocationPayload } from 'src/app/dtmodels/location-payload';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +15,12 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toastr: ToastrService) {}
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService, 
+    private router: Router, 
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -53,7 +56,14 @@ export class LoginComponent implements OnInit {
         }
 
         //console.log("printed locations: " + auth.locations[0].name);
-        sessionStorage.setItem('token', value.body!.token);
+        localStorage.setItem('token', value.body!.token);
+
+        //these 2 lines are for handling log in state for rendering the left sidebar
+        const authToken = value.body!.token;
+        this.authService.setAuthToken(authToken);
+
+        this.authService.setUserId(value.body!.id);
+
         this.router.navigate(['/about']);
       },
       error: error => {

@@ -1,19 +1,63 @@
 Short Description of purpose for user- output is based on current position on Earth.
 
-drop-down? menu with list of locations saved for the user
+List home location details, name+long+lat
 
-option to add hotspot or custom location based on long/lat
+Current home location: {{location.longitude}}, {{location.latitude}};
+<table>
+  <tr>
+    <td>{{location.home}}</td>
+    <td>{{location.longitude}}</td>
+    <td>{{location.latitude}}</td>
+  </tr>
+</table>
 
-A submit button to save/update/delete the choice
-
-List for saved locations
 <br>
 
+<p>Add popular location</p>
+<div class="form-container">
 <form [formGroup]="geolocationForm" (ngSubmit)="submit()">
-  <select formName="geolocationPicker" formControlName="geolocation">
+  <select id="popularForm" formName="geolocationPicker" formControlName="geolocation">
     <option [ngValue]="null" disabled>Select Country</option>
-    <option *ngFor="let geolocation of geolocations" [ngValue]="geolocation.name">{{geolocation.name}}</option>
+    <option *ngFor="let geolocation of geolocations" [ngValue]="geolocation">{{geolocation.name}}</option>
   </select>
   <br>
-  <button type="submit" class="bg-white px-5 py-2 rounded-md shadow-xl">Submit</button>
+  <button class="submit" type="submit">Submit</button>
 </form>
+</div>
+
+<p>List of saved locations</p>
+
+<div>
+  <table class="geoTable">
+    <thead>
+      <tr>
+        <td>name</td>
+        <td>latitude</td>
+        <td>longitude</td>
+        <td>isHome</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let location of retrievedLocations">
+        <td>{{location.name}}</td> 
+        <td>{{location.latitude}}</td>
+        <td>{{location.longitude}}</td>
+        <td>{{location.home}}</td>
+        <button class="submit" (click)="deleteLocation(location)">Remove</button>
+        <button class="submit" (click)="updateLocation(location)">Make home</button>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>menu to add location by inputting long/lat</p>
+
+<div class="form-container">
+<form [formGroup]="addLocationForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="name" placeholder="Enter location name"><br>
+  <input type="text" formControlName="longitude" placeholder="Enter location longitude"><br>
+  <input type="text" formControlName="latitude" placeholder="Enter location latitude"><br>
+  <button class="submit" type="submit">Submit</button>
+</form>
+</div>
+

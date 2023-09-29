@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { AuthInterceptorService } from './services/auth-interceptor-service.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -9,8 +9,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AboutComponent } from './pages/about/about.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { GeolocationComponent } from './pages/geolocation/geolocation.component';
 import { ConstellationComponent } from './pages/constellation/constellation.component';
@@ -19,6 +19,8 @@ import { ViewSavedDateComponent } from './pages/view-saved-date/view-saved-date.
 import { HarmonicMappingComponent } from './pages/harmonic-mapping/harmonic-mapping.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RightbarComponent } from './components/rightbar/rightbar.component';
+import { EditcommentComponent } from './components/rightbar/editcomment/editcomment.component';
 
 
 @NgModule({
@@ -35,11 +37,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     GeolocationComponent,
     SkyConditionComponent,
     ViewSavedDateComponent,
-    HarmonicMappingComponent
+    HarmonicMappingComponent,
+    RightbarComponent,
+    EditcommentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -49,7 +54,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       preventDuplicates: true
     }),
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

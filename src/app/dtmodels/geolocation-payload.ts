@@ -1,6 +1,7 @@
 export interface GeolocationPayload {
+  id: string;
   name: string;
   longitude: number;
   latitude: number;
-  token: string;
+  home: boolean;
 }

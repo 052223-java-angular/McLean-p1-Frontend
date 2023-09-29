@@ -1,0 +1,33 @@
+<div id="rightbar">
+
+<div id="comment-container">
+
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()"> 
+    <div class="form-group">
+        <label for="text">Comment Text: </label>
+        <textarea id="text" formControlName="text" class="form-control"></textarea>
+        <div *ngIf="commentForm.get('text')?.invalid && (commentForm.get('text')?.dirty || commentForm.get('text')?.touched)" class="text-danger">
+            Comment text is required and must be at least 3 characters long.
+        </div>
+    </div>
+
+    <button type="submit" class="commentbtn">Submit Comment</button>
+</form>
+
+<p>Comment section</p>
+<div *ngFor="let comment of comments" class="comment">
+    <p>{{comment.comment}}</p>
+    <p>{{comment.username}}</p>
+    <p>{{comment.created_at | date: 'medium'}}</p>
+    <p>{{comment.edited_at | date: 'medium'}}</p>
+
+    <app-editcomment [editedComment]="comment" (onSave)="saveEditedComment($event)" (onCancel)="cancelEditComment(comment)" *ngIf="comment.isEditing"></app-editcomment>
+    <span *ngIf="!isEditing">
+        <button *ngIf="userIdCheck(comment.userId)" (click)="enableEdit(comment)" class="comments-btn2">edit</button>
+        <button *ngIf="userIdCheck(comment.userId)" (click)="delete(comment)" class="comments-btn2">delete</button>
+    </span>
+</div>
+
+</div>
+
+</div>

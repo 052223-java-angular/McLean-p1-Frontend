@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, timer } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api-service.service';
 import { SaveDatePayload } from 'src/app/dtmodels/save-date-payload';
 import { SaveDateService } from 'src/app/services/save-date-service.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-sky-condition',
@@ -15,15 +12,17 @@ import { formatDate } from '@angular/common';
 })
 export class SkyConditionComponent implements OnInit {
 
-  token: any;
   apiList: any = [];
   apiList2: any = [];
 
-  constructor(private apiService: ApiService, private saveDateService: SaveDateService, private router: Router, private toastr: ToastrService) {
-  }
+  constructor(
+    private apiService: ApiService, 
+    private saveDateService: SaveDateService, 
+    private router: Router, 
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
-    this.token = sessionStorage.getItem('token');
     this.apiService.getData().subscribe((data) => {
       console.log(data);
       this.apiList = data;
@@ -118,11 +117,21 @@ export class SkyConditionComponent implements OnInit {
 
   submit(): void {
     //for created_at use epoch time
-    const current = (new Date).getTime();
+    const current = new Date();
+    const epoch = current.getTime();
+
+    const month = current.getMonth() + 1;
+    const day = current.getDate();
+    const year = current.getFullYear();
+    const hours = current.getHours().toString().padStart(2, "0");
+    const minutes = current.getMinutes().toString().padStart(2, "0");
+    const seconds = current.getSeconds().toString().padStart(2, "0");
+    const formattedTime = `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
 
     const payload: SaveDatePayload = {
-      name: 'test',
-      created_at: current,
+      //should add currently set location to the name for identification - put current loc in local storage
+      name: formattedTime,
+      created_at: epoch,
       mercury_phase: this.apiList.response[0].ra,
       venus_phase: this.apiList.response[1].ra,
       mars_phase: this.apiList.response[2].ra,
@@ -131,13 +140,11 @@ export class SkyConditionComponent implements OnInit {
       uranus_phase: this.apiList.response[5].ra,
       neptune_phase: this.apiList.response[6].ra,
       pluto_phase: this.apiList.response[7].ra,
-      token: this.token,
     }
 
     this.saveDateService.saveDate(payload).subscribe({
       next: value => {
         this.toastr.success('Date saved');
-        this.router.navigate(['/about']);
       },
       error: error => {
         this.toastr.error(error.error.message);

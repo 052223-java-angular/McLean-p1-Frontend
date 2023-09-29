@@ -8,13 +8,17 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ConstellationService {
-  baseUrl = environment.apiBaseUrl;
-  //baseUrl = 'http://localhost:8080/mclean/api';
+  //baseUrl = environment.apiBaseUrl;
+  baseUrl = 'http://localhost:8080/mclean/api';
 
   constructor(private http: HttpClient) { }
 
   setConstellation(payload: ConstellationPayload): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/favorites/create`, payload);
+    return this.http.post<any>(`${this.baseUrl}/favorites/favorite`, payload);
+  }
+
+  getConstellation(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/favorites/favorite`);
   }
 
 }

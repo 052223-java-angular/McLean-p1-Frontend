@@ -9,7 +9,6 @@
     'map math';
   gap: 10px;
   background-color: rgba(50, 50, 50, .85);
-  background-filter: blur(10px);
   padding: 10px;
   place-items: center;
 }
@@ -17,6 +16,12 @@
 .selection {
   display: flex;
   justify-content: center;
+}
+
+.selectOpts {
+  width: 200px;
+  height: 25px;
+  margin: 10px;
 }
 
 p {
@@ -42,6 +47,148 @@ p {
   background-color: white;
   transform-origin: 50% 100%;
   transform: rotate(var(--rotate));
+}
+
+.aresLabel, .taurusLabel, .geminiLabel, .cancerLabel, .leoLabel, .virgoLabel, .libraLabel, .scorpioLabel, .sagittariusLabel, .capricornLabel, .aquariusLabel, .piscesLabel {
+  position: absolute;
+  height: 50%;
+  width: 2px;
+  top: 0%;
+  left: 50%;
+  transform-origin: 50% 100%;
+  transform: rotate(var(--rotate));
+}
+
+.aresLabel::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/Aries.svg.png");
+  background-size: cover;
+}
+
+.taurusLabel::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/Taurus.svg.png");
+  background-size: cover;
+}
+
+.geminiLabel::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/Gemini.svg.png");
+  background-size: cover;
+}
+
+.cancerLabel::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/Cancer.svg.png");
+  background-size: cover;
+}
+
+.leoLabel::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/Leo.svg.png");
+  background-size: cover;
+}
+
+.virgoLabel::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/Virgo.svg.png");
+  background-size: cover;
+}
+
+.libraLabel::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/Libra.svg.png");
+  background-size: cover;
+}
+
+.scorpioLabel::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/Scorpius.svg.png");
+  background-size: cover;
+}
+
+.sagittariusLabel::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/Sagittarius.svg.png");
+  background-size: cover;
+}
+
+.capricornLabel::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/Capricornus.svg.png");
+  background-size: cover;
+}
+
+.aquariusLabel::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/Aquarius.svg.png");
+  background-size: cover;
+}
+
+.pisces::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../../../assets/images/pisces.svg.png");
+  background-size: cover;
 }
 
 .mercury, .venus, .mars, .jupiter, .saturn, .uranus, .neptune, .pluto {
@@ -74,6 +221,14 @@ p {
     inset 0 0 20px rgba(0,0,0,0.3),
     inset 0 0 30px rgba(0,0,0,0.2),
     inset 0 0 40px rgba(0,0,0,0.1);
+  opacity: 0.95;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+  
+.mercury:hover::before {
+  content: "mercury";
+  opacity: 1;
 }
 
 .venus::before {
@@ -92,6 +247,14 @@ p {
     inset 0 0 20px rgba(0,0,0,0.3),
     inset 0 0 30px rgba(0,0,0,0.2),
     inset 0 0 40px rgba(0,0,0,0.1);
+  opacity: 0.95;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+  
+.venus:hover::before {
+  content: "venus";
+  opacity: 1;
 }
 
 .mars::before {
@@ -110,6 +273,14 @@ p {
     inset 0 0 20px rgba(0,0,0,0.3),
     inset 0 0 30px rgba(0,0,0,0.2),
     inset 0 0 40px rgba(0,0,0,0.1);
+  opacity: 0.95;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+  
+.mars:hover::before {
+  content: "mars";
+  opacity: 1;
 }
 
 .jupiter::before {
@@ -128,6 +299,14 @@ p {
     inset 0 0 20px rgba(0,0,0,0.3),
     inset 0 0 30px rgba(0,0,0,0.2),
     inset 0 0 40px rgba(0,0,0,0.1);
+  opacity: 0.95;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+  
+.jupiter:hover::before {
+  content: "jupiter";
+  opacity: 1;
 }
 
 .saturn::before {
@@ -146,6 +325,14 @@ p {
     inset 0 0 20px rgba(0,0,0,0.3),
     inset 0 0 30px rgba(0,0,0,0.2),
     inset 0 0 40px rgba(0,0,0,0.1);
+  opacity: 0.95;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+  
+.saturn:hover::before {
+  content: "saturn";
+  opacity: 1;
 }
 
 .uranus::before {
@@ -164,6 +351,14 @@ p {
     inset 0 0 20px rgba(0,0,0,0.3),
     inset 0 0 30px rgba(0,0,0,0.2),
     inset 0 0 40px rgba(0,0,0,0.1);
+  opacity: 0.95;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+  
+.uranus:hover::before {
+  content: "uranus";
+  opacity: 1;
 }
 
 .neptune::before {
@@ -182,6 +377,14 @@ p {
     inset 0 0 20px rgba(0,0,0,0.3),
     inset 0 0 30px rgba(0,0,0,0.2),
     inset 0 0 40px rgba(0,0,0,0.1);
+  opacity: 0.95;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+  
+.neptune:hover::before {
+  content: "neptune";
+  opacity: 1;
 }
 
 .pluto::before {
@@ -200,5 +403,13 @@ p {
     inset 0 0 20px rgba(0,0,0,0.3),
     inset 0 0 30px rgba(0,0,0,0.2),
     inset 0 0 40px rgba(0,0,0,0.1);
+  opacity: 0.95;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.pluto:hover::before {
+  content: "pluto";
+  opacity: 1;
 }
 

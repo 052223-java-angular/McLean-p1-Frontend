@@ -3,12 +3,12 @@
   <div class="selection">
   <p>Select two planets to find their harmonic relationship</p>
   <form [formGroup]="harmonicForm">
-    <select formName="planetPicker1" formControlName="planet1" class="mx-5">
+    <select formName="planetPicker1" formControlName="planet1" class="selectOpts">
       <option [ngValue]="null" disabled>Select First Planet</option>
       <option *ngFor="let planet1 of planetSelectionOne" [ngValue]="planet1.name">{{planet1.name}}</option>
     </select>
 
-    <select formName="planetPicker2" formControlName="planet2">
+    <select formName="planetPicker2" formControlName="planet2" class="selectOpts">
       <option [ngValue]="null" disabled>Select Second Planet</option>
       <option *ngFor="let planet2 of planetSelectionTwo" [ngValue]="planet2.name">{{planet2.name}}</option>
     </select>
@@ -18,17 +18,29 @@
 
   <div *ngIf="isSubmitted && harmonicForm.valid" class="solar-system">
     <div class="ares" [style.--rotate.deg]="aresRotation"></div>
+    <div class="aresLabel" [style.--rotate.deg]="aresRotation"></div>
     <div class="taurus" [style.--rotate.deg]="taurusRotation"></div>
+    <div class="taurusLabel" [style.--rotate.deg]="taurusRotation"></div>
     <div class="gemini" [style.--rotate.deg]="geminiRotation"></div>
+    <div class="geminiLabel" [style.--rotate.deg]="geminiRotation"></div>
     <div class="cancer" [style.--rotate.deg]="cancerRotation"></div>
+    <div class="cancerLabel" [style.--rotate.deg]="cancerRotation"></div>
     <div class="leo" [style.--rotate.deg]="leoRotation"></div>
+    <div class="leoLabel" [style.--rotate.deg]="leoRotation"></div>
     <div class="virgo" [style.--rotate.deg]="virgoRotation"></div>
+    <div class="virgoLabel" [style.--rotate.deg]="virgoRotation"></div>
     <div class="libra" [style.--rotate.deg]="libraRotation"></div>
+    <div class="libraLabel" [style.--rotate.deg]="libraRotation"></div>
     <div class="scorpio" [style.--rotate.deg]="scorpioRotation"></div>
+    <div class="scorpioLabel" [style.--rotate.deg]="scorpioRotation"></div>
     <div class="sagittarius" [style.--rotate.deg]="sagittariusRotation"></div>
+    <div class="sagittariusLabel" [style.--rotate.deg]="sagittariusRotation"></div>
     <div class="capricorn" [style.--rotate.deg]="capricornRotation"></div>
+    <div class="capricornLabel" [style.--rotate.deg]="capricornRotation"></div>
     <div class="aquarius" [style.--rotate.deg]="aquariusRotation"></div>
+    <div class="aquariusLabel" [style.--rotate.deg]="aquariusRotation"></div>
     <div class="pisces" [style.--rotate.deg]="piscesRotation"></div>
+    <div class="piscesLabel" [style.--rotate.deg]="piscesRotation"></div>
 
     <div *ngIf="isMercurySubmitted" class="mercury" [style.--rotate.deg]="mercuryRotation"></div>
     <div *ngIf="isVenusSubmitted" class="venus" [style.--rotate.deg]="venusRotation"></div>

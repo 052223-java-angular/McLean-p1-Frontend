@@ -10,18 +10,17 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class SaveDateService {
-  baseUrl = environment.apiBaseUrl;
-  //baseUrl = 'http://localhost:8080/mclean/api';
+  //baseUrl = environment.apiBaseUrl;
+  baseUrl = 'http://localhost:8080/mclean/api';
 
   constructor(private http: HttpClient) { }
 
   saveDate(payload: SaveDatePayload): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/dates/create`, payload);
+    return this.http.post<any>(`${this.baseUrl}/dates/date`, payload);
   }
 
-  getDates(userId: string) {
-    const dates = this.http.get<Array<ReadDatePayload>>(`${this.baseUrl}/dates/read/${userId}`);
-    return dates;
+  getDates(): Observable<any> {
+    return this.http.get<Array<ReadDatePayload>>(`${this.baseUrl}/dates/dates`);
   }
 
 }

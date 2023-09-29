@@ -6,6 +6,7 @@
 body {
   background: url(assets/images/Luxor.jpg);
   background-size: cover;
+  background-attachment: fixed;
 }
 
 html, body { height: 100%; }

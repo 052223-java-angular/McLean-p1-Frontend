@@ -26,7 +26,17 @@
 .comment {
   background-color:rgb(214, 135, 135);
   color: white;
-  margin: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.comment-time {
+  font-size: 10px;
+}
+
+.comment-username {
+  font-weight: 500;
 }
 
 .commentbtn {

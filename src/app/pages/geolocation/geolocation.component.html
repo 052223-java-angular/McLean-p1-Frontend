@@ -1,11 +1,11 @@
-Short Description of purpose for user- output is based on current position on Earth.
-
-List home location details, name+long+lat
-
-Current home location: {{location.longitude}}, {{location.latitude}};
 <table>
+  <thead>
+    <tr>
+      Current Home Location
+    </tr>
+  </thead>
   <tr>
-    <td>{{location.home}}</td>
+    <td>{{location.name}}</td>
     <td>{{location.longitude}}</td>
     <td>{{location.latitude}}</td>
   </tr>
@@ -25,11 +25,12 @@ Current home location: {{location.longitude}}, {{location.latitude}};
 </form>
 </div>
 
-<p>List of saved locations</p>
-
 <div>
   <table class="geoTable">
     <thead>
+      <tr>
+        Saved Locations
+      </tr>
       <tr>
         <td>name</td>
         <td>latitude</td>
@@ -53,7 +54,7 @@ Current home location: {{location.longitude}}, {{location.latitude}};
 <p>menu to add location by inputting long/lat</p>
 
 <div class="form-container">
-<form [formGroup]="addLocationForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="addLocationForm" (ngSubmit)="onSubmit()" class="addLocationForm">
   <input type="text" formControlName="name" placeholder="Enter location name"><br>
   <input type="text" formControlName="longitude" placeholder="Enter location longitude"><br>
   <input type="text" formControlName="latitude" placeholder="Enter location latitude"><br>

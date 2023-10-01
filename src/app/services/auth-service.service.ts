@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  //baseUrl = environment.apiBaseUrl;
-  baseUrl = 'http://localhost:8080/mclean/api';
+  baseUrl = environment.apiBaseUrl;
+  //baseUrl = 'http://localhost:8080/mclean/api';
   private readonly LS_KEY = 'authToken';
   private userId: string | null = null;
 

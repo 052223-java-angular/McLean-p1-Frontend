@@ -60,6 +60,18 @@ export class GeolocationComponent implements OnInit {
       this.geolocationService.getGeolocation().subscribe({
         next: data => {
           this.retrievedLocations = data;
+
+          console.log('is this line being hit');
+          console.log(this.retrievedLocations[0]);
+
+          for(let i = 0; i<this.retrievedLocations.length; i++) {
+            const currentItem = this.retrievedLocations[i];
+            if(currentItem.home) {
+              this.location = currentItem;
+              console.log("home found");
+              break;
+            }
+          }
           
         },
         error: err => console.log(err)
@@ -126,6 +138,9 @@ export class GeolocationComponent implements OnInit {
         }
       })
 
+      //clear form
+      this.addLocationForm.reset();
+
     }
 
     //need to account for possibility home location is deleted
@@ -133,6 +148,12 @@ export class GeolocationComponent implements OnInit {
       console.log(location.name);
       console.log(location.latitude);
       console.log(location.id);
+
+      //cannot remove home
+      if(location.home) {
+        alert('Cannot delete home location.  Change home location first homie.')
+        return;
+      }
 
       //optimistic update
       const index = this.retrievedLocations.indexOf(location);
@@ -167,6 +188,9 @@ export class GeolocationComponent implements OnInit {
       //optimistic update
       location.home = true;
       //filter through current retrieved locations to find current home - should be set
+      this.location.home = false;
+      //switch display location to location selected
+      this.location = location;
 
       this.geolocationService.updateGeolocation(location.id, payload).subscribe({
         next: value => {

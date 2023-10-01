@@ -66,6 +66,8 @@ export class RightbarComponent implements OnInit {
         }
       })
 
+      //clear form after submitting
+      this.commentForm.reset();
       
     }
   }

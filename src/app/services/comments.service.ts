@@ -2,13 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CommentsPayload } from '../dtmodels/comments-payload';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentsService {
 
-  baseUrl = 'http://localhost:8080/mclean/api';
+  baseUrl = environment.apiBaseUrl;
+  //baseUrl = 'http://localhost:8080/mclean/api';
 
   constructor(private http: HttpClient) { }
 
